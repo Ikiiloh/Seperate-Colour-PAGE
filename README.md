@@ -57,18 +57,18 @@ Aplikasi ini mengotomasi proses pemilahan yang biasanya dilakukan secara manual,
 .
 ├── app/
 │   ├── main.py           # Entri poin FastAPI, definisi semua endpoint API
-│   ├── pdf_processor.py  # Logika analisis warna dan pemisahan PDF
+│   ├── pdf_processor.py  # Logika analisis warna dan pemisahan PDF (dioptimalkan low-RAM)
 │   └── cleanup.py        # Fungsi pembersihan file sesi lama
-├── static/
-│   ├── index.html        # Antarmuka pengguna (frontend)
+├── frontend/
+│   ├── index.html        # Antarmuka pengguna (Vercel static)
 │   ├── css/
 │   │   └── style.css     # Stylesheet dengan tema skeuomorphic
-│   └── js/
-│       └── app.js        # Logika frontend: upload, polling, preview, download
+│   ├── js/
+│   │   └── app.js        # Logika frontend & API routing
+│   └── vercel.json       # Konfigurasi routing Vercel
 ├── temp_sessions/        # Direktori sementara untuk file sesi (tidak di-commit)
-├── Dockerfile
+├── Dockerfile            # Konfigurasi Docker untuk Koyeb backend
 ├── Procfile
-├── render.yaml
 ├── requirements.txt
 └── README.md
 ```
