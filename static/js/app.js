@@ -137,11 +137,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Download Handlers
-    btnDownloadColor.addEventListener('click', () => triggerPdfGeneration('color'));
-    btnDownloadBw.addEventListener('click', () => triggerPdfGeneration('bw'));
-    btnDownloadZip.addEventListener('click', () => triggerPdfGeneration('zip'));
+    if (btnDownloadColor) btnDownloadColor.addEventListener('click', () => triggerPdfGeneration('color'));
+    if (btnDownloadBw) btnDownloadBw.addEventListener('click', () => triggerPdfGeneration('bw'));
+    if (btnDownloadZip) btnDownloadZip.addEventListener('click', () => triggerPdfGeneration('zip'));
 
-    btnResetApp.addEventListener('click', resetApp);
+    if (btnResetApp) {
+        btnResetApp.addEventListener('click', (e) => {
+            e.preventDefault();
+            resetApp();
+        });
+    }
+
+    // Browse button trigger
+    const browseBtns = document.querySelectorAll('.browse-btn');
+    browseBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            fileInput.click();
+        });
+    });
 
     // --- Core Functions ---
     function handleFileSelect(file) {
@@ -343,12 +357,29 @@ document.addEventListener('DOMContentLoaded', () => {
         currentSessionId = null;
         originalData = null;
         pagesData = [];
-        fileInput.value = '';
-        progressBarFill.style.width = '0%';
+        if (fileInput) {
+            fileInput.value = '';
+        }
+        if (progressBarFill) {
+            progressBarFill.style.width = '0%';
+        }
+        activeFilter = 'all';
+
+        // Reset filter button styles
+        filterBtns.forEach(btn => {
+            if (btn.getAttribute('data-filter') === 'all') {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
 
         uploadSection.classList.remove('hidden');
         progressSection.classList.add('hidden');
         resultsSection.classList.add('hidden');
+
+        // Smooth scroll to top of page
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function formatRupiah(amount) {
