@@ -1,0 +1,17 @@
+# Temporary sessions and generated PDFs
+temp_sessions/*
+!temp_sessions/.gitkeep
+
+# Python caches and environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# System files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
