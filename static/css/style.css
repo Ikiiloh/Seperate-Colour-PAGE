@@ -1,34 +1,35 @@
-/* Neo-Brutalism Design System - SeparaPDF */
+/* Skeuomorphic Design System - SeparaPDF */
 :root {
-    --bg-body: #f4f0ea;
-    --bg-card: #ffffff;
-    
-    --color-black: #000000;
-    --color-white: #ffffff;
-    --color-yellow: #ffe600;
-    --color-pink: #ff529a;
-    --color-cyan: #00e5ff;
-    --color-green: #00e676;
-    --color-orange: #ff7a00;
-    --color-purple: #a855f7;
-    --color-gray: #e2e8f0;
+    --skeuo-bg-desk: #181d28;
+    --skeuo-card-top: #2b3548;
+    --skeuo-card-bottom: #1c2331;
+    --skeuo-card-border-light: rgba(255, 255, 255, 0.18);
+    --skeuo-card-border-dark: rgba(0, 0, 0, 0.6);
 
-    --border-thin: 2px solid #000000;
-    --border-main: 3px solid #000000;
-    --border-thick: 4px solid #000000;
+    --skeuo-inset-top: #10141e;
+    --skeuo-inset-bottom: #1a2130;
 
-    --shadow-sm: 3px 3px 0px #000000;
-    --shadow-main: 5px 5px 0px #000000;
-    --shadow-lg: 8px 8px 0px #000000;
-    --shadow-xl: 12px 12px 0px #000000;
+    --skeuo-gold-top: #f59e0b;
+    --skeuo-gold-bottom: #d97706;
 
-    --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --skeuo-pink-top: #ec4899;
+    --skeuo-pink-bottom: #be185d;
 
-    --radius-none: 0px;
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 16px;
+    --skeuo-cyan-top: #06b6d4;
+    --skeuo-cyan-bottom: #0891b2;
+
+    --skeuo-green-top: #10b981;
+    --skeuo-green-bottom: #047857;
+
+    --skeuo-blue-top: #3b82f6;
+    --skeuo-blue-bottom: #1d4ed8;
+
+    --skeuo-text-light: #f8fafc;
+    --skeuo-text-muted: #94a3b8;
+    --skeuo-text-dim: #64748b;
+
+    --font-heading: 'Rajdhani', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 * {
@@ -37,12 +38,14 @@
     padding: 0;
 }
 
-body.brutalist-theme {
+body.skeuo-theme {
     font-family: var(--font-body);
-    background-color: var(--bg-body);
-    background-image: radial-gradient(#000000 1px, transparent 1px);
-    background-size: 24px 24px;
-    color: var(--color-black);
+    background-color: var(--skeuo-bg-desk);
+    background-image: 
+        radial-gradient(circle at 50% 30%, rgba(59, 130, 246, 0.08), transparent 70%),
+        radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.05), transparent 60%),
+        linear-gradient(135deg, #1c2230 0%, #121620 100%);
+    color: var(--skeuo-text-light);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -59,8 +62,9 @@ body.brutalist-theme {
 
 /* Header */
 .site-header {
-    background: var(--color-yellow);
-    border-bottom: var(--border-thick);
+    background: linear-gradient(180deg, #333d52 0%, #1e2533 100%);
+    border-bottom: 2px solid #0f131a;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 8px 20px rgba(0, 0, 0, 0.5);
     padding: 16px 0;
     position: sticky;
     top: 0;
@@ -76,32 +80,35 @@ body.brutalist-theme {
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .logo-icon {
     position: relative;
     width: 46px;
     height: 46px;
-    background: var(--color-white);
-    border: var(--border-thick);
-    box-shadow: var(--shadow-sm);
+    background: linear-gradient(180deg, #ec4899 0%, #be185d 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 22px;
-    color: var(--color-black);
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .overlay-icon {
     position: absolute;
-    bottom: -4px;
-    right: -4px;
-    font-size: 10px;
-    background: var(--color-pink);
-    border: 2px solid #000;
-    padding: 2px;
-    color: #000;
+    bottom: -2px;
+    right: -2px;
+    font-size: 11px;
+    background: #0f172a;
+    border-radius: 50%;
+    padding: 3px;
+    color: var(--skeuo-cyan-top);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
 .logo-text {
@@ -111,24 +118,22 @@ body.brutalist-theme {
 
 .brand-title {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 900;
+    font-size: 1.6rem;
+    font-weight: 700;
     letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .brand-highlight {
-    background: var(--color-pink);
-    color: #fff;
-    padding: 0 6px;
-    border: 2px solid #000;
+    color: #ec4899;
     margin-left: 2px;
 }
 
 .brand-tag {
-    font-size: 0.72rem;
-    font-weight: 800;
+    font-size: 0.75rem;
+    color: var(--skeuo-text-muted);
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 .header-badges {
@@ -136,95 +141,93 @@ body.brutalist-theme {
     gap: 12px;
 }
 
-.badge {
-    padding: 6px 14px;
-    border: var(--border-main);
-    box-shadow: var(--shadow-sm);
-    font-size: 0.8rem;
-    font-weight: 800;
+.skeuo-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #2b3548 0%, #19202c 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #e2e8f0;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    font-family: var(--font-heading);
+    gap: 8px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.badge-yellow { background: var(--color-yellow); }
-.badge-pink { background: var(--color-pink); color: #fff; }
+.skeuo-badge.gold {
+    background: linear-gradient(180deg, #d97706 0%, #92400e 100%);
+    border-color: rgba(253, 230, 138, 0.3);
+    color: #fff;
+}
 
-/* Brutalist Cards */
-.brutalist-card {
-    background: var(--bg-card);
-    border: var(--border-thick);
-    box-shadow: var(--shadow-lg);
-    border-radius: var(--radius-md);
+/* Tactile Cards */
+.skeuo-card {
+    background: linear-gradient(180deg, var(--skeuo-card-top) 0%, var(--skeuo-card-bottom) 100%);
+    border: 1px solid var(--skeuo-card-border-light);
+    border-bottom: 1px solid var(--skeuo-card-border-dark);
+    box-shadow: 
+        0 14px 35px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
     padding: 30px;
     margin-bottom: 30px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 /* Hero Section */
 .hero-section {
     text-align: center;
     padding: 44px 0 28px;
-    max-width: 840px;
+    max-width: 820px;
     margin: 0 auto;
-}
-
-.hero-sticker {
-    display: inline-block;
-    background: var(--color-pink);
-    color: #fff;
-    border: var(--border-main);
-    box-shadow: var(--shadow-sm);
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    font-weight: 900;
-    padding: 4px 14px;
-    transform: rotate(-2deg);
-    margin-bottom: 16px;
 }
 
 .hero-title {
     font-family: var(--font-heading);
     font-size: 3rem;
-    font-weight: 900;
-    line-height: 1.15;
-    letter-spacing: -1px;
-    margin-bottom: 18px;
-    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
 }
 
-.highlight-yellow {
-    background: var(--color-yellow);
-    border: var(--border-main);
-    box-shadow: var(--shadow-sm);
-    padding: 2px 12px;
-    display: inline-block;
-    transform: rotate(1deg);
+.skeuo-embossed-text {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.highlight-metallic {
+    background: linear-gradient(180deg, #ec4899 0%, #be185d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
 }
 
 .hero-subtitle {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: #222;
+    font-size: 1.1rem;
+    color: var(--skeuo-text-muted);
     line-height: 1.6;
     margin-bottom: 24px;
 }
 
 .tag-color {
-    background: var(--color-pink);
+    background: linear-gradient(180deg, #f472b6 0%, #db2777 100%);
     color: #fff;
     padding: 2px 8px;
-    border: 2px solid #000;
-    font-weight: 800;
+    border-radius: 6px;
+    font-weight: 700;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .tag-bw {
-    background: var(--color-cyan);
-    color: #000;
+    background: linear-gradient(180deg, #64748b 0%, #334155 100%);
+    color: #fff;
     padding: 2px 8px;
-    border: 2px solid #000;
-    font-weight: 800;
+    border-radius: 6px;
+    font-weight: 700;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .feature-pills {
@@ -234,51 +237,51 @@ body.brutalist-theme {
     gap: 12px;
 }
 
-.pill {
-    border: var(--border-main);
-    box-shadow: var(--shadow-sm);
+.skeuo-pill {
+    background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 8px rgba(0, 0, 0, 0.3);
     padding: 8px 18px;
-    border-radius: var(--radius-sm);
-    font-family: var(--font-heading);
+    border-radius: 20px;
     font-size: 0.88rem;
-    font-weight: 800;
+    font-weight: 700;
+    color: var(--skeuo-text-light);
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: transform 0.15s ease;
+    transition: all 0.15s ease;
 }
 
-.pill:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: var(--shadow-main);
+.skeuo-pill i {
+    color: var(--skeuo-cyan-top);
 }
 
-.pill-cyan { background: var(--color-cyan); }
-.pill-yellow { background: var(--color-yellow); }
-.pill-pink { background: var(--color-pink); color: #fff; }
-.pill-green { background: var(--color-green); }
-
-/* Dropzone Upload Section */
-.upload-card {
-    background: #ffffff;
+.skeuo-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 6px 14px rgba(0, 0, 0, 0.45);
 }
 
-.upload-zone {
-    border: 4px dashed #000000;
-    border-radius: var(--radius-sm);
-    padding: 46px 20px;
+/* Upload Panel (Sunken Tray Effect) */
+.skeuo-inset-panel {
+    background: linear-gradient(180deg, #10141e 0%, #19202c 100%);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    box-shadow: 
+        inset 0 6px 14px rgba(0, 0, 0, 0.7),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+        0 1px 0 rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 44px 20px;
     text-align: center;
     cursor: pointer;
-    background: #fffdf0;
-    box-shadow: var(--shadow-main);
-    transition: all 0.15s ease;
     position: relative;
+    transition: all 0.2s ease;
 }
 
 .upload-zone:hover, .upload-zone.drag-over {
-    background: var(--color-yellow);
-    box-shadow: var(--shadow-lg);
-    transform: translate(-3px, -3px);
+    border-color: var(--skeuo-cyan-top);
+    box-shadow: 
+        inset 0 6px 14px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(6, 182, 212, 0.25);
 }
 
 .file-input {
@@ -291,13 +294,13 @@ body.brutalist-theme {
     cursor: pointer;
 }
 
-.upload-icon-wrapper {
+.skeuo-icon-btn {
     width: 76px;
     height: 76px;
-    background: var(--color-cyan);
-    border: var(--border-thick);
-    box-shadow: var(--shadow-sm);
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
     border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 14px rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -305,47 +308,47 @@ body.brutalist-theme {
 }
 
 .upload-icon {
-    font-size: 34px;
-    color: #000;
+    font-size: 32px;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .upload-content h2 {
     font-family: var(--font-heading);
     font-size: 1.4rem;
-    font-weight: 900;
+    font-weight: 700;
     margin-bottom: 8px;
-    text-transform: uppercase;
 }
 
 .upload-hint {
-    font-size: 1rem;
-    font-weight: 700;
+    color: var(--skeuo-text-muted);
+    font-size: 0.98rem;
     margin-bottom: 12px;
 }
 
 .browse-btn {
-    background: var(--color-pink);
-    color: #fff;
-    padding: 2px 8px;
-    border: 2px solid #000;
+    color: #38bdf8;
+    font-weight: 700;
     text-decoration: underline;
 }
 
-.upload-specs {
-    font-size: 0.82rem;
-    font-weight: 700;
-    background: var(--color-gray);
-    padding: 4px 10px;
-    border: 2px solid #000;
+.skeuo-inset-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    font-size: 0.82rem;
+    color: var(--skeuo-text-dim);
 }
 
 /* Settings Accordion */
 .settings-box {
     margin-top: 20px;
-    border-top: var(--border-main);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 16px;
 }
 
@@ -354,9 +357,9 @@ body.brutalist-theme {
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    font-family: var(--font-heading);
-    font-size: 0.95rem;
-    font-weight: 800;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--skeuo-text-muted);
     user-select: none;
 }
 
@@ -371,37 +374,38 @@ body.brutalist-theme {
 
 .setting-item label {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 700;
     margin-bottom: 8px;
 }
 
-.badge-inline {
-    background: var(--color-yellow);
-    border: 2px solid #000;
-    padding: 1px 8px;
+.skeuo-badge-inline {
+    background: #0f172a;
+    color: #38bdf8;
+    padding: 2px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
 }
 
-.setting-item input[type="range"] {
+.skeuo-slider {
     width: 100%;
-    accent-color: #000;
-    height: 10px;
+    accent-color: #3b82f6;
 }
 
-/* Progress Card */
+/* Progress Section */
 .progress-card {
     text-align: center;
     padding: 50px 30px;
-    background: var(--color-yellow);
 }
 
-.spinner-container {
-    width: 76px;
-    height: 76px;
-    background: #fff;
-    border: var(--border-thick);
-    box-shadow: var(--shadow-sm);
+.skeuo-meter-dial {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    border: 3px solid #3b82f6;
     border-radius: 50%;
+    box-shadow: inset 0 3px 8px rgba(0,0,0,0.7), 0 0 15px rgba(59, 130, 246, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -410,39 +414,44 @@ body.brutalist-theme {
 
 .scanner-icon {
     font-size: 34px;
-    color: #000;
+    color: #38bdf8;
 }
 
 .progress-title {
     font-family: var(--font-heading);
     font-size: 1.6rem;
-    font-weight: 900;
+    font-weight: 700;
 }
 
-.progress-bar-wrapper {
+.skeuo-inset-bar {
     width: 100%;
     max-width: 500px;
-    height: 18px;
-    background: #fff;
-    border: var(--border-main);
-    box-shadow: var(--shadow-sm);
+    height: 14px;
+    background: #0f172a;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.7);
     margin: 20px auto 12px;
     overflow: hidden;
 }
 
-.progress-bar-fill {
+.skeuo-bar-fill {
     width: 0%;
     height: 100%;
-    background: var(--color-pink);
+    background: linear-gradient(90deg, #3b82f6, #ec4899);
+    border-radius: 10px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
     transition: width 0.3s ease;
 }
 
-.scan-status {
-    font-weight: 800;
-    font-size: 0.9rem;
+.skeuo-lcd-text {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: #38bdf8;
+    letter-spacing: 0.5px;
 }
 
-/* Stats Grid Row */
+/* Stats Gauges Grid */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -450,40 +459,36 @@ body.brutalist-theme {
     margin-bottom: 26px;
 }
 
-.stat-card {
-    border: var(--border-thick);
-    box-shadow: var(--shadow-main);
-    border-radius: var(--radius-md);
+.skeuo-gauge-card {
+    background: linear-gradient(180deg, #273142 0%, #171f2b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-radius: 14px;
     padding: 20px;
     display: flex;
     align-items: center;
     gap: 16px;
-    transition: transform 0.15s ease;
 }
 
-.stat-card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: var(--shadow-lg);
-}
-
-.stat-white { background: #ffffff; }
-.stat-pink { background: var(--color-pink); color: #fff; }
-.stat-cyan { background: var(--color-cyan); }
-.stat-green { background: var(--color-green); }
-
-.stat-icon {
+.skeuo-icon-inset {
     width: 48px;
     height: 48px;
-    background: #fff;
-    border: 3px solid #000;
-    box-shadow: 2px 2px 0px #000;
+    background: #111622;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
-    color: #000;
+    color: #60a5fa;
     flex-shrink: 0;
 }
+
+.card-color-theme .skeuo-icon-inset { color: #f472b6; }
+.card-bw-theme .skeuo-icon-inset { color: #cbd5e1; }
+.card-green-theme .skeuo-icon-inset { color: #34d399; }
 
 .stat-info {
     display: flex;
@@ -493,42 +498,53 @@ body.brutalist-theme {
 .stat-label {
     font-family: var(--font-heading);
     font-size: 0.78rem;
-    font-weight: 900;
+    font-weight: 700;
+    color: var(--skeuo-text-muted);
     letter-spacing: 0.5px;
 }
 
-.stat-value {
+.skeuo-lcd-val {
     font-family: var(--font-heading);
     font-size: 1.8rem;
-    font-weight: 900;
+    font-weight: 700;
     line-height: 1.1;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-.savings-percent-badge {
+.color-text { color: #f472b6; }
+.bw-text { color: #e2e8f0; }
+.green-text { color: #34d399; }
+
+.skeuo-inset-tag {
     display: inline-block;
-    background: #000;
-    color: #fff;
+    background: #0f172a;
+    color: #34d399;
     font-size: 0.75rem;
-    font-weight: 900;
+    font-weight: 700;
     padding: 2px 8px;
-    border: 2px solid #000;
+    border-radius: 6px;
+    border: 1px solid rgba(52, 211, 153, 0.2);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
     margin-top: 4px;
     width: fit-content;
 }
 
-/* Estimator Card */
-.estimator-card {
-    background: #ffffff;
+/* Calculator Section */
+.skeuo-calculator-body {
+    background: linear-gradient(180deg, #242d3d 0%, #161c27 100%);
 }
 
-.card-title {
+.skeuo-calc-header {
     font-family: var(--font-heading);
     font-size: 1.2rem;
-    font-weight: 900;
+    font-weight: 700;
     margin-bottom: 18px;
     display: flex;
     align-items: center;
     gap: 10px;
+    color: #93c5fd;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 
 .estimator-form {
@@ -540,48 +556,50 @@ body.brutalist-theme {
 
 .input-group label {
     display: block;
-    font-size: 0.88rem;
-    font-weight: 800;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--skeuo-text-muted);
     margin-bottom: 6px;
 }
 
-.input-wrapper {
+.skeuo-inset-input {
     position: relative;
     display: flex;
     align-items: center;
+    background: #0f172a;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.7);
 }
 
 .currency-prefix {
     position: absolute;
     left: 14px;
-    font-weight: 900;
-    font-size: 1rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--skeuo-text-muted);
 }
 
-.input-wrapper input {
+.skeuo-inset-input input {
     width: 100%;
-    background: #fff;
-    border: var(--border-main);
-    box-shadow: var(--shadow-sm);
-    border-radius: var(--radius-sm);
-    padding: 10px 14px 10px 44px;
-    color: #000;
+    background: transparent;
+    border: none;
+    padding: 10px 14px 10px 42px;
+    color: #fff;
     font-family: var(--font-heading);
     font-size: 1.1rem;
-    font-weight: 900;
+    font-weight: 700;
 }
 
-.input-wrapper input:focus {
+.skeuo-inset-input input:focus {
     outline: none;
-    background: #fffdf0;
-    box-shadow: var(--shadow-main);
 }
 
-.cost-summary {
-    background: #fffdf0;
-    border: var(--border-main);
-    box-shadow: var(--shadow-sm);
-    border-radius: var(--radius-sm);
+.skeuo-calc-screen {
+    background: #090d16;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.8);
     padding: 12px 18px;
     display: flex;
     flex-direction: column;
@@ -591,26 +609,23 @@ body.brutalist-theme {
 .cost-item {
     display: flex;
     justify-content: space-between;
-    font-size: 0.9rem;
-    font-weight: 700;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--skeuo-text-muted);
 }
 
 .old-price {
     text-decoration: line-through;
-    color: #ef4444;
+    color: #f87171;
 }
 
 .new-price {
-    color: #10b981;
+    color: #34d399;
     font-size: 1.1rem;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 /* Preview Section & Grid */
-.preview-card {
-    background: #ffffff;
-}
-
 .preview-header {
     display: flex;
     justify-content: space-between;
@@ -619,19 +634,18 @@ body.brutalist-theme {
     gap: 14px;
     margin-bottom: 18px;
     padding-bottom: 14px;
-    border-bottom: var(--border-main);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .preview-title h3 {
     font-family: var(--font-heading);
     font-size: 1.2rem;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .preview-title small {
-    font-size: 0.83rem;
-    font-weight: 700;
-    color: #444;
+    font-size: 0.82rem;
+    color: var(--skeuo-text-muted);
 }
 
 .filter-controls {
@@ -639,28 +653,35 @@ body.brutalist-theme {
     gap: 8px;
 }
 
-.filter-btn {
-    background: #ffffff;
-    border: var(--border-main);
-    box-shadow: var(--shadow-sm);
-    color: #000;
-    padding: 6px 14px;
-    border-radius: var(--radius-sm);
+.skeuo-btn {
+    background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 3px 6px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
     font-family: var(--font-heading);
-    font-size: 0.82rem;
-    font-weight: 900;
+    font-size: 0.85rem;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.15s ease;
 }
 
-.filter-btn:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: var(--shadow-main);
+.skeuo-btn:hover {
+    background: linear-gradient(180deg, #475569 0%, #334155 100%);
+    transform: translateY(-1px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 5px 10px rgba(0, 0, 0, 0.4);
 }
 
-.filter-btn.active {
-    background: var(--color-yellow);
-    box-shadow: var(--shadow-main);
+.skeuo-btn:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.skeuo-btn.active {
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+    border-color: rgba(147, 197, 253, 0.3);
 }
 
 .quick-actions-bar {
@@ -670,27 +691,19 @@ body.brutalist-theme {
     margin-bottom: 20px;
 }
 
-.action-btn {
-    border: var(--border-main);
-    box-shadow: var(--shadow-sm);
-    color: #000;
-    padding: 8px 16px;
-    border-radius: var(--radius-sm);
-    font-size: 0.85rem;
-    font-weight: 800;
-    font-family: var(--font-heading);
-    cursor: pointer;
-    transition: all 0.15s ease;
+.btn-pink-tactile {
+    background: linear-gradient(180deg, #ec4899 0%, #be185d 100%);
+    border-color: rgba(249, 168, 212, 0.3);
 }
 
-.action-btn:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: var(--shadow-main);
+.btn-blue-tactile {
+    background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+    border-color: rgba(186, 230, 253, 0.3);
 }
 
-.action-pink { background: var(--color-pink); color: #fff; }
-.action-cyan { background: var(--color-cyan); }
-.action-yellow { background: var(--color-yellow); }
+.btn-metallic-tactile {
+    background: linear-gradient(180deg, #475569 0%, #1e293b 100%);
+}
 
 /* Thumbnails Grid */
 .thumbnails-grid {
@@ -703,19 +716,20 @@ body.brutalist-theme {
 }
 
 .thumbnails-grid::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 .thumbnails-grid::-webkit-scrollbar-thumb {
-    background: #000;
+    background: #334155;
     border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .thumb-card {
-    background: #fff;
-    border: var(--border-main);
-    box-shadow: var(--shadow-sm);
-    border-radius: var(--radius-sm);
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0,0,0,0.2);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -723,17 +737,16 @@ body.brutalist-theme {
 }
 
 .thumb-card.is-color {
-    background: #fff0f6;
-    border-color: #000;
+    border: 2px solid #ec4899;
 }
 
 .thumb-card.is-bw {
-    background: #ffffff;
+    border: 2px solid #64748b;
 }
 
 .thumb-card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: var(--shadow-main);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
 }
 
 .thumb-img-wrapper {
@@ -741,7 +754,6 @@ body.brutalist-theme {
     width: 100%;
     padding-top: 133%;
     background: #e2e8f0;
-    border-bottom: var(--border-main);
 }
 
 .thumb-img-wrapper img {
@@ -759,25 +771,27 @@ body.brutalist-theme {
     top: 6px;
     right: 6px;
     padding: 3px 8px;
-    border: 2px solid #000;
+    border-radius: 4px;
     font-family: var(--font-heading);
-    font-size: 0.68rem;
-    font-weight: 900;
+    font-size: 0.7rem;
+    font-weight: 700;
     text-transform: uppercase;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 4px rgba(0,0,0,0.4);
 }
 
 .badge-color-tag {
-    background: var(--color-pink);
+    background: linear-gradient(180deg, #ec4899 0%, #be185d 100%);
     color: #fff;
 }
 
 .badge-bw-tag {
-    background: var(--color-cyan);
-    color: #000;
+    background: linear-gradient(180deg, #475569 0%, #1e293b 100%);
+    color: #e2e8f0;
 }
 
 .thumb-details {
     padding: 10px;
+    background: #1e293b;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -787,55 +801,59 @@ body.brutalist-theme {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.8rem;
-    font-weight: 800;
+    font-size: 0.78rem;
+    color: var(--skeuo-text-muted);
 }
 
 .btn-toggle-cat {
     width: 100%;
     padding: 6px;
-    border-radius: 4px;
-    border: 2px solid #000;
-    box-shadow: 2px 2px 0px #000;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     font-family: var(--font-heading);
     font-size: 0.75rem;
-    font-weight: 900;
+    font-weight: 700;
     cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3);
     transition: all 0.15s ease;
 }
 
 .btn-toggle-cat:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 3px 3px 0px #000;
+    transform: translateY(-1px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.btn-toggle-cat:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .btn-toggle-cat.to-bw {
-    background: var(--color-pink);
+    background: linear-gradient(180deg, #ec4899 0%, #be185d 100%);
     color: #fff;
 }
 
 .btn-toggle-cat.to-color {
-    background: var(--color-cyan);
-    color: #000;
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+    color: #fff;
 }
 
-/* Download Card */
+/* Push Buttons (Download Section) */
 .download-card {
     text-align: center;
     padding: 36px 24px;
-    background: var(--color-yellow);
 }
 
 .download-header h2 {
     font-family: var(--font-heading);
     font-size: 1.6rem;
-    font-weight: 900;
+    font-weight: 700;
     margin-bottom: 4px;
 }
 
 .download-header p {
     font-size: 0.95rem;
-    font-weight: 700;
+    color: var(--skeuo-text-muted);
     margin-bottom: 24px;
 }
 
@@ -846,13 +864,17 @@ body.brutalist-theme {
     margin-bottom: 20px;
 }
 
-.btn {
+.skeuo-push-btn {
     padding: 16px 20px;
-    border-radius: var(--radius-sm);
-    border: var(--border-thick);
-    box-shadow: var(--shadow-main);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.4);
     font-family: var(--font-heading);
-    font-weight: 900;
+    font-weight: 700;
     font-size: 1.05rem;
     cursor: pointer;
     display: flex;
@@ -862,18 +884,33 @@ body.brutalist-theme {
     transition: all 0.15s ease;
 }
 
-.btn:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: var(--shadow-lg);
+.skeuo-push-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        0 12px 24px rgba(0, 0, 0, 0.5);
 }
 
-.btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: var(--shadow-sm);
+.skeuo-push-btn:active {
+    transform: translateY(2px);
+    box-shadow: 
+        inset 0 3px 6px rgba(0, 0, 0, 0.5),
+        0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.btn i {
-    font-size: 1.5rem;
+.btn-color-skeuo {
+    background: linear-gradient(180deg, #ec4899 0%, #be185d 100%);
+    color: #ffffff;
+}
+
+.btn-bw-skeuo {
+    background: linear-gradient(180deg, #475569 0%, #1e293b 100%);
+    color: #ffffff;
+}
+
+.btn-zip-skeuo {
+    background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+    color: #ffffff;
 }
 
 .btn-text {
@@ -885,43 +922,30 @@ body.brutalist-theme {
 
 .btn-text small {
     font-size: 0.78rem;
-    font-weight: 800;
-}
-
-.btn-color {
-    background: var(--color-pink);
-    color: #ffffff;
-}
-
-.btn-bw {
-    background: var(--color-cyan);
-    color: #000000;
-}
-
-.btn-zip {
-    background: var(--color-green);
-    color: #000000;
+    font-weight: 500;
+    opacity: 0.85;
 }
 
 .reset-wrapper {
     margin-top: 14px;
 }
 
-.btn-link {
-    background: #ffffff;
-    border: var(--border-main);
-    box-shadow: var(--shadow-sm);
+.skeuo-btn-sm {
+    background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 3px 6px rgba(0, 0, 0, 0.3);
+    color: var(--skeuo-text-muted);
     padding: 8px 16px;
-    font-family: var(--font-heading);
-    font-weight: 900;
+    border-radius: 8px;
     font-size: 0.85rem;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.15s ease;
 }
 
-.btn-link:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: var(--shadow-main);
+.skeuo-btn-sm:hover {
+    color: #fff;
+    transform: translateY(-1px);
 }
 
 .hidden {
@@ -932,20 +956,20 @@ body.brutalist-theme {
 .site-footer {
     margin-top: auto;
     padding: 30px 0;
-    border-top: var(--border-thick);
-    background: #ffffff;
+    border-top: 2px solid #0f131a;
+    background: linear-gradient(180deg, #1a202c 0%, #0f131a 100%);
     text-align: center;
-    font-size: 0.9rem;
-    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--skeuo-text-muted);
 }
 
 .privacy-note {
-    font-size: 0.8rem;
-    color: #555;
+    font-size: 0.78rem;
+    color: var(--skeuo-text-dim);
     margin-top: 6px;
 }
 
-/* Responsiveness Media Queries */
+/* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2.2rem;
@@ -953,7 +977,7 @@ body.brutalist-theme {
     .header-badges {
         display: none;
     }
-    .brutalist-card {
+    .skeuo-card {
         padding: 20px 14px;
     }
     .stats-grid {

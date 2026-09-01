@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeparaPDF - Pemisah Halaman PDF Berwarna vs Hitam-Putih (Neo-Brutalism)</title>
+    <title>SeparaPDF - Pemisah Halaman PDF Berwarna vs Hitam-Putih (Skeuomorphic UI)</title>
     <meta name="description" content="Aplikasi pemisah halaman PDF otomatis untuk mahasiswa skripsi. Pisahkan halaman berwarna dan hitam-putih dalam hitungan detik untuk hemat biaya cetak hingga 70%.">
     
-    <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+    <!-- Google Fonts: Plus Jakarta Sans & Rajdhani -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Custom Neo-Brutalism CSS -->
+    <!-- Custom Skeuomorphic CSS -->
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body class="brutalist-theme">
+<body class="skeuo-theme">
 
     <!-- Navigation Header -->
-    <header class="site-header">
+    <header class="site-header skeuo-header">
         <div class="container header-container">
             <div class="logo">
-                <div class="logo-icon">
+                <div class="logo-icon skeuo-btn-inset">
                     <i class="fa-solid fa-file-pdf"></i>
                     <i class="fa-solid fa-scissors overlay-icon"></i>
                 </div>
                 <div class="logo-text">
                     <span class="brand-title">SEPARA<span class="brand-highlight">PDF</span></span>
-                    <span class="brand-tag">PEMISAH WARNA vs HITAM-PUTIH</span>
+                    <span class="brand-tag">Pemisah Warna & B/W</span>
                 </div>
             </div>
             <div class="header-badges">
-                <span class="badge badge-yellow"><i class="fa-solid fa-shield-halved"></i> 100% PRIVASI AMAN</span>
-                <span class="badge badge-pink"><i class="fa-solid fa-bolt"></i> GRATIS & TANPA LOGIN</span>
+                <span class="badge skeuo-badge"><i class="fa-solid fa-shield-halved"></i> 100% Privasi Aman</span>
+                <span class="badge skeuo-badge gold"><i class="fa-solid fa-bolt"></i> Gratis & Tanpa Login</span>
             </div>
         </div>
     </header>
@@ -43,45 +43,45 @@
     <main class="container main-content">
         <!-- Hero Section -->
         <section class="hero-section">
-            <h1 class="hero-title">
-                CETAK SKRIPSI <span class="highlight-yellow">JAUH LEBIH HEMAT!</span>
+            <h1 class="hero-title skeuo-embossed-text">
+                Cetak Skripsi <span class="highlight-metallic">Jauh Lebih Hemat</span>
             </h1>
             <p class="hero-subtitle">
-                Unggah PDF skripsi Anda. Sistem kami memindai dan memisahkan halaman <span class="tag-color">Berwarna</span> & <span class="tag-bw">Hitam-Putih</span> secara otomatis tanpa perlu memilah manual satu-per-satu.
+                Unggah PDF skripsi Anda. Sistem memindai & memisahkan halaman <span class="tag-color">Berwarna</span> & <span class="tag-bw">Hitam-Putih</span> secara otomatis.
             </p>
             
             <div class="feature-pills">
-                <div class="pill pill-cyan"><i class="fa-solid fa-wand-magic-sparkles"></i> Deteksi Piksel RGB</div>
-                <div class="pill pill-yellow"><i class="fa-solid fa-sliders"></i> Sensitivitas Toleransi Scan</div>
-                <div class="pill pill-pink"><i class="fa-solid fa-images"></i> Preview & Koreksi Manual</div>
-                <div class="pill pill-green"><i class="fa-solid fa-calculator"></i> Estimator Hemat Biaya</div>
+                <div class="pill skeuo-pill"><i class="fa-solid fa-wand-magic-sparkles"></i> Deteksi Piksel RGB</div>
+                <div class="pill skeuo-pill"><i class="fa-solid fa-sliders"></i> Sensitivitas Toleransi Scan</div>
+                <div class="pill skeuo-pill"><i class="fa-solid fa-images"></i> Preview & Koreksi Manual</div>
+                <div class="pill skeuo-pill"><i class="fa-solid fa-calculator"></i> Estimator Hemat Biaya</div>
             </div>
         </section>
 
         <!-- Step 1: Upload Dropzone Card -->
-        <section id="uploadSection" class="brutalist-card upload-card">
-            <div class="upload-zone" id="dropzone">
+        <section id="uploadSection" class="skeuo-card upload-card">
+            <div class="upload-zone skeuo-inset-panel" id="dropzone">
                 <input type="file" id="fileInput" accept=".pdf" class="file-input">
                 <div class="upload-content">
-                    <div class="upload-icon-wrapper">
+                    <div class="upload-icon-wrapper skeuo-icon-btn">
                         <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
                     </div>
-                    <h2>TARIK & DROP FILE PDF SKRIPSI DI SINI</h2>
-                    <p class="upload-hint">atau <span class="browse-btn">PILIH FILE DARI PERANGKAT</span></p>
-                    <span class="upload-specs"><i class="fa-solid fa-circle-info"></i> Format PDF | Maksimal 50 MB (hingga ~300+ Halaman)</span>
+                    <h2>Tarik & Lepaskan File PDF Skripsi di Sini</h2>
+                    <p class="upload-hint">atau <span class="browse-btn skeuo-btn-sm">Pilih File dari Perangkat</span></p>
+                    <span class="upload-specs skeuo-inset-badge"><i class="fa-solid fa-circle-info"></i> Format PDF | Maksimal 50 MB (hingga ~300+ Halaman)</span>
                 </div>
             </div>
 
             <!-- Advanced Settings Accordion -->
             <div class="settings-box">
-                <div class="settings-header" id="toggleSettings">
-                    <span><i class="fa-solid fa-sliders"></i> PENGATURAN SENSITIVITAS & NOISE SCAN</span>
+                <div class="settings-header skeuo-header-toggle" id="toggleSettings">
+                    <span><i class="fa-solid fa-sliders"></i> Pengaturan Sensitivitas & Noise Scan</span>
                     <i class="fa-solid fa-chevron-down caret-icon"></i>
                 </div>
                 <div class="settings-body" id="settingsBody">
                     <div class="setting-item">
-                        <label for="thresholdRange">Toleransi Deteksi Warna (Threshold): <strong id="thresholdVal" class="badge-inline">18</strong></label>
-                        <input type="range" id="thresholdRange" min="5" max="40" value="18" step="1">
+                        <label for="thresholdRange">Toleransi Deteksi Warna (Threshold): <strong id="thresholdVal" class="skeuo-badge-inline">18</strong></label>
+                        <input type="range" id="thresholdRange" min="5" max="40" value="18" step="1" class="skeuo-slider">
                         <small>Gunakan nilai lebih tinggi jika dokumen Anda hasil scan yang memiliki bayangan kertas agak kekuningan/abu-abu.</small>
                     </div>
                 </div>
@@ -89,77 +89,77 @@
         </section>
 
         <!-- Loading / Progress State -->
-        <section id="progressSection" class="brutalist-card progress-card hidden">
-            <div class="spinner-container">
+        <section id="progressSection" class="skeuo-card progress-card hidden">
+            <div class="spinner-container skeuo-meter-dial">
                 <i class="fa-solid fa-gear fa-spin scanner-icon"></i>
             </div>
-            <h2 id="progressTitle" class="progress-title">MEMINDAI DOKUMEN PDF...</h2>
+            <h2 id="progressTitle" class="progress-title skeuo-embossed-text">MEMINDAI DOKUMEN PDF...</h2>
             <p id="progressSubtitle">Menganalisis piksel warna di setiap halaman PDF Anda...</p>
-            <div class="progress-bar-wrapper">
-                <div class="progress-bar-fill" id="progressBarFill"></div>
+            <div class="progress-bar-wrapper skeuo-inset-bar">
+                <div class="progress-bar-fill skeuo-bar-fill" id="progressBarFill"></div>
             </div>
-            <div class="scan-status" id="scanStatus">Menyiapkan halaman...</div>
+            <div class="scan-status skeuo-lcd-text" id="scanStatus">Menyiapkan halaman...</div>
         </section>
 
         <!-- Step 2: Dashboard Results & Overrides -->
         <section id="resultsSection" class="results-wrapper hidden">
             <!-- Stats Counters Row -->
             <div class="stats-grid">
-                <div class="stat-card stat-white">
-                    <div class="stat-icon icon-black"><i class="fa-solid fa-copy"></i></div>
+                <div class="stat-card skeuo-gauge-card">
+                    <div class="stat-icon skeuo-icon-inset"><i class="fa-solid fa-copy"></i></div>
                     <div class="stat-info">
                         <span class="stat-label">TOTAL HALAMAN</span>
-                        <h2 class="stat-value" id="valTotalPages">0</h2>
+                        <h2 class="stat-value skeuo-lcd-val" id="valTotalPages">0</h2>
                     </div>
                 </div>
 
-                <div class="stat-card stat-pink">
-                    <div class="stat-icon icon-black"><i class="fa-solid fa-palette"></i></div>
+                <div class="stat-card skeuo-gauge-card card-color-theme">
+                    <div class="stat-icon skeuo-icon-inset"><i class="fa-solid fa-palette"></i></div>
                     <div class="stat-info">
                         <span class="stat-label">HALAMAN BERWARNA</span>
-                        <h2 class="stat-value" id="valColorPages">0</h2>
+                        <h2 class="stat-value skeuo-lcd-val color-text" id="valColorPages">0</h2>
                     </div>
                 </div>
 
-                <div class="stat-card stat-cyan">
-                    <div class="stat-icon icon-black"><i class="fa-solid fa-print"></i></div>
+                <div class="stat-card skeuo-gauge-card card-bw-theme">
+                    <div class="stat-icon skeuo-icon-inset"><i class="fa-solid fa-print"></i></div>
                     <div class="stat-info">
                         <span class="stat-label">HITAM-PUTIH (B/W)</span>
-                        <h2 class="stat-value" id="valBwPages">0</h2>
+                        <h2 class="stat-value skeuo-lcd-val bw-text" id="valBwPages">0</h2>
                     </div>
                 </div>
 
-                <div class="stat-card stat-green">
-                    <div class="stat-icon icon-black"><i class="fa-solid fa-piggy-bank"></i></div>
+                <div class="stat-card skeuo-gauge-card card-green-theme">
+                    <div class="stat-icon skeuo-icon-inset"><i class="fa-solid fa-piggy-bank"></i></div>
                     <div class="stat-info">
                         <span class="stat-label">ESTIMASI HEMAT</span>
-                        <h2 class="stat-value" id="valMoneySaved">Rp 0</h2>
-                        <span class="savings-percent-badge" id="valSavingsPercent">HEMAT 0%</span>
+                        <h2 class="stat-value skeuo-lcd-val green-text" id="valMoneySaved">Rp 0</h2>
+                        <span class="savings-percent-badge skeuo-inset-tag" id="valSavingsPercent">HEMAT 0%</span>
                     </div>
                 </div>
             </div>
 
             <!-- Cost Estimator Calculator -->
-            <div class="brutalist-card estimator-card">
-                <div class="card-title">
+            <div class="skeuo-card estimator-card skeuo-calculator-body">
+                <div class="card-title skeuo-calc-header">
                     <i class="fa-solid fa-calculator"></i> KALKULATOR ESTIMASI BIAYA PRINT SKRIPSI
                 </div>
                 <div class="estimator-form">
                     <div class="input-group">
                         <label for="inputPriceColor">Tarif Print Warna / Lembar</label>
-                        <div class="input-wrapper">
+                        <div class="input-wrapper skeuo-inset-input">
                             <span class="currency-prefix">Rp</span>
                             <input type="number" id="inputPriceColor" value="1000" min="0" step="100">
                         </div>
                     </div>
                     <div class="input-group">
                         <label for="inputPriceBw">Tarif Print B/W / Lembar</label>
-                        <div class="input-wrapper">
+                        <div class="input-wrapper skeuo-inset-input">
                             <span class="currency-prefix">Rp</span>
                             <input type="number" id="inputPriceBw" value="250" min="0" step="50">
                         </div>
                     </div>
-                    <div class="cost-summary">
+                    <div class="cost-summary skeuo-calc-screen">
                         <div class="cost-item">
                             <span>Biaya Cetak Semua Warna:</span>
                             <strong id="costAllColor" class="old-price">Rp 0</strong>
@@ -173,40 +173,40 @@
             </div>
 
             <!-- Thumbnail Grid & Manual Override Section -->
-            <div class="brutalist-card preview-card">
+            <div class="skeuo-card preview-card">
                 <div class="preview-header">
                     <div class="preview-title">
                         <h3><i class="fa-solid fa-images"></i> PREVIEW HALAMAN & KOREKSI MANUAL</h3>
                         <small>Klik tombol pada thumbnail untuk mengoreksi halaman yang salah terdeteksi</small>
                     </div>
-                    <div class="filter-controls">
-                        <button class="filter-btn active" data-filter="all">SEMUA (<span id="countFilterAll">0</span>)</button>
-                        <button class="filter-btn" data-filter="color">BERWARNA (<span id="countFilterColor">0</span>)</button>
-                        <button class="filter-btn" data-filter="bw">HITAM-PUTIH (<span id="countFilterBw">0</span>)</button>
+                    <div class="filter-controls skeuo-button-group">
+                        <button class="filter-btn skeuo-btn active" data-filter="all">SEMUA (<span id="countFilterAll">0</span>)</button>
+                        <button class="filter-btn skeuo-btn" data-filter="color">BERWARNA (<span id="countFilterColor">0</span>)</button>
+                        <button class="filter-btn skeuo-btn" data-filter="bw">HITAM-PUTIH (<span id="countFilterBw">0</span>)</button>
                     </div>
                 </div>
 
                 <div class="quick-actions-bar">
-                    <button class="action-btn action-pink" id="btnMarkAllColor"><i class="fa-solid fa-check-double"></i> Tandai Semua Berwarna</button>
-                    <button class="action-btn action-cyan" id="btnMarkAllBw"><i class="fa-solid fa-font"></i> Tandai Semua Hitam-Putih</button>
-                    <button class="action-btn action-yellow" id="btnResetCategories"><i class="fa-solid fa-rotate-left"></i> Reset Deteksi Awal</button>
+                    <button class="action-btn skeuo-btn btn-pink-tactile" id="btnMarkAllColor"><i class="fa-solid fa-check-double"></i> Tandai Semua Berwarna</button>
+                    <button class="action-btn skeuo-btn btn-blue-tactile" id="btnMarkAllBw"><i class="fa-solid fa-font"></i> Tandai Semua Hitam-Putih</button>
+                    <button class="action-btn skeuo-btn btn-metallic-tactile" id="btnResetCategories"><i class="fa-solid fa-rotate-left"></i> Reset Deteksi Awal</button>
                 </div>
 
                 <!-- Grid Container -->
-                <div class="thumbnails-grid" id="thumbnailsGrid">
+                <div class="thumbnails-grid skeuo-grid-tray" id="thumbnailsGrid">
                     <!-- Dynamic page thumbnails rendered by JavaScript -->
                 </div>
             </div>
 
             <!-- Download Action Panel -->
-            <div class="brutalist-card download-card">
+            <div class="skeuo-card download-card skeuo-panel-metal">
                 <div class="download-header">
                     <h2><i class="fa-solid fa-download"></i> UNDUH FILE PDF TERPISAH</h2>
                     <p>File hasil pisah siap langsung dibawa ke tempat fotokopi/print!</p>
                 </div>
                 
                 <div class="download-buttons">
-                    <button id="btnDownloadColor" class="btn btn-color">
+                    <button id="btnDownloadColor" class="btn skeuo-push-btn btn-color-skeuo">
                         <i class="fa-solid fa-file-arrow-down"></i>
                         <div class="btn-text">
                             <span>UNDUH PDF BERWARNA</span>
@@ -214,7 +214,7 @@
                         </div>
                     </button>
 
-                    <button id="btnDownloadBw" class="btn btn-bw">
+                    <button id="btnDownloadBw" class="btn skeuo-push-btn btn-bw-skeuo">
                         <i class="fa-solid fa-file-arrow-down"></i>
                         <div class="btn-text">
                             <span>UNDUH PDF HITAM-PUTIH</span>
@@ -222,7 +222,7 @@
                         </div>
                     </button>
 
-                    <button id="btnDownloadZip" class="btn btn-zip">
+                    <button id="btnDownloadZip" class="btn skeuo-push-btn btn-zip-skeuo">
                         <i class="fa-solid fa-file-zipper"></i>
                         <div class="btn-text">
                             <span>UNDUH PAKET (ZIP)</span>
@@ -232,14 +232,14 @@
                 </div>
 
                 <div class="reset-wrapper">
-                    <button id="btnResetApp" class="btn-link"><i class="fa-solid fa-arrow-left"></i> UNGGAH & PROSES DOKUMEN LAIN</button>
+                    <button id="btnResetApp" class="btn-link skeuo-btn-sm"><i class="fa-solid fa-arrow-left"></i> Unggah & Proses Dokumen Lain</button>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
+    <footer class="site-footer skeuo-footer">
         <div class="container footer-content">
             <p><strong>SEPARAPDF</strong> &copy; 2026. Solusi Cerdas Hemat Cetak Skripsi Mahasiswa.</p>
             <p class="privacy-note"><i class="fa-solid fa-lock"></i> File diunggah secara aman dan otomatis dihapus dari sistem demi menjaga kerahasiaan dokumen Anda.</p>
