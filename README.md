@@ -132,8 +132,8 @@ Cek status server.
 
 ```bash
 # 1. Clone repositori
-git clone https://github.com/username/separa-pdf.git
-cd separa-pdf
+git clone https://github.com/Ikiiloh/Seperate-Colour-PAGE
+cd Seperate-Colour-PAGE
 
 # 2. Buat dan aktifkan virtual environment
 python -m venv venv
