@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeparaPDF - Pemisah Halaman PDF Berwarna vs Hitam-Putih (Skeuomorphic UI)</title>
-    <meta name="description" content="Aplikasi pemisah halaman PDF otomatis untuk mahasiswa skripsi. Pisahkan halaman berwarna dan hitam-putih dalam hitungan detik untuk hemat biaya cetak hingga 70%.">
+    <title>SeparaPDF - Pemisah Halaman PDF Berwarna vs Hitam-Putih</title>
+    <meta name="description" content="Aplikasi pemisah halaman PDF otomatis untuk mahasiswa skripsi. Pisahkan halaman berwarna dan hitam-putih dalam hitungan detik untuk hemat biaya cetak skripsi.">
     
     <!-- Google Fonts: Plus Jakarta Sans & Rajdhani -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,18 +44,11 @@
         <!-- Hero Section -->
         <section class="hero-section">
             <h1 class="hero-title skeuo-embossed-text">
-                Cetak Skripsi <span class="highlight-metallic">Jauh Lebih Hemat</span>
+                Cetak Skripsi <span class="highlight-gold-text">Jauh Lebih Hemat</span>
             </h1>
             <p class="hero-subtitle">
-                Unggah PDF skripsi Anda. Sistem memindai & memisahkan halaman <span class="tag-color">Berwarna</span> & <span class="tag-bw">Hitam-Putih</span> secara otomatis.
+                Unggah PDF skripsi Anda. Sistem memindai & memisahkan halaman <strong class="text-color-accent">Berwarna</strong> & <strong class="text-bw-accent">Hitam-Putih</strong> secara otomatis.
             </p>
-            
-            <div class="feature-pills">
-                <div class="pill skeuo-pill"><i class="fa-solid fa-wand-magic-sparkles"></i> Deteksi Piksel RGB</div>
-                <div class="pill skeuo-pill"><i class="fa-solid fa-sliders"></i> Sensitivitas Toleransi Scan</div>
-                <div class="pill skeuo-pill"><i class="fa-solid fa-images"></i> Preview & Koreksi Manual</div>
-                <div class="pill skeuo-pill"><i class="fa-solid fa-calculator"></i> Estimator Hemat Biaya</div>
-            </div>
         </section>
 
         <!-- Step 1: Upload Dropzone Card -->
@@ -180,14 +173,14 @@
                         <small>Klik tombol pada thumbnail untuk mengoreksi halaman yang salah terdeteksi</small>
                     </div>
                     <div class="filter-controls skeuo-button-group">
-                        <button class="filter-btn skeuo-btn active" data-filter="all">SEMUA (<span id="countFilterAll">0</span>)</button>
-                        <button class="filter-btn skeuo-btn" data-filter="color">BERWARNA (<span id="countFilterColor">0</span>)</button>
-                        <button class="filter-btn skeuo-btn" data-filter="bw">HITAM-PUTIH (<span id="countFilterBw">0</span>)</button>
+                        <button class="filter-btn skeuo-btn active" data-filter="all" type="button">SEMUA (<span id="countFilterAll">0</span>)</button>
+                        <button class="filter-btn skeuo-btn" data-filter="color" type="button">BERWARNA (<span id="countFilterColor">0</span>)</button>
+                        <button class="filter-btn skeuo-btn" data-filter="bw" type="button">HITAM-PUTIH (<span id="countFilterBw">0</span>)</button>
                     </div>
                 </div>
 
                 <div class="quick-actions-bar">
-                    <button class="action-btn skeuo-btn btn-metallic-tactile" id="btnResetCategories"><i class="fa-solid fa-rotate-left"></i> Reset Deteksi Awal</button>
+                    <button class="action-btn skeuo-btn btn-metallic-tactile" id="btnResetCategories" type="button"><i class="fa-solid fa-rotate-left"></i> Reset Deteksi Awal</button>
                 </div>
 
                 <!-- Grid Container -->
@@ -204,7 +197,7 @@
                 </div>
                 
                 <div class="download-buttons">
-                    <button id="btnDownloadColor" class="btn skeuo-push-btn btn-color-skeuo">
+                    <button id="btnDownloadColor" type="button" class="btn skeuo-push-btn btn-color-skeuo">
                         <i class="fa-solid fa-file-arrow-down"></i>
                         <div class="btn-text">
                             <span>UNDUH PDF BERWARNA</span>
@@ -212,7 +205,7 @@
                         </div>
                     </button>
 
-                    <button id="btnDownloadBw" class="btn skeuo-push-btn btn-bw-skeuo">
+                    <button id="btnDownloadBw" type="button" class="btn skeuo-push-btn btn-bw-skeuo">
                         <i class="fa-solid fa-file-arrow-down"></i>
                         <div class="btn-text">
                             <span>UNDUH PDF HITAM-PUTIH</span>
@@ -220,7 +213,7 @@
                         </div>
                     </button>
 
-                    <button id="btnDownloadZip" class="btn skeuo-push-btn btn-zip-skeuo">
+                    <button id="btnDownloadZip" type="button" class="btn skeuo-push-btn btn-zip-skeuo">
                         <i class="fa-solid fa-file-zipper"></i>
                         <div class="btn-text">
                             <span>UNDUH PAKET (ZIP)</span>
@@ -230,7 +223,7 @@
                 </div>
 
                 <div class="reset-wrapper">
-                    <button id="btnResetApp" class="btn-link skeuo-btn-sm"><i class="fa-solid fa-arrow-left"></i> Unggah & Proses Dokumen Lain</button>
+                    <button id="btnResetApp" type="button" class="btn-link skeuo-btn-sm"><i class="fa-solid fa-arrow-left"></i> Unggah & Proses Dokumen Lain</button>
                 </div>
             </div>
         </section>

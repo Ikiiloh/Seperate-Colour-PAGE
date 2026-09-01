@@ -59,50 +59,60 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeFilter = 'all';
 
     // --- Event Listeners ---
-    toggleSettings.addEventListener('click', () => {
-        settingsBody.classList.toggle('open');
-        const icon = toggleSettings.querySelector('.caret-icon');
-        icon.classList.toggle('fa-chevron-down');
-        icon.classList.toggle('fa-chevron-up');
-    });
+    if (toggleSettings) {
+        toggleSettings.addEventListener('click', () => {
+            settingsBody.classList.toggle('open');
+            const icon = toggleSettings.querySelector('.caret-icon');
+            if (icon) {
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            }
+        });
+    }
 
-    thresholdRange.addEventListener('input', (e) => {
-        thresholdVal.textContent = e.target.value;
-    });
+    if (thresholdRange) {
+        thresholdRange.addEventListener('input', (e) => {
+            thresholdVal.textContent = e.target.value;
+        });
+    }
 
     // Drag & Drop
-    ['dragenter', 'dragover'].forEach(eventName => {
-        dropzone.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dropzone.classList.add('drag-over');
+    if (dropzone) {
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropzone.classList.add('drag-over');
+            });
         });
-    });
 
-    ['dragleave', 'drop'].forEach(eventName => {
-        dropzone.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dropzone.classList.remove('drag-over');
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropzone.classList.remove('drag-over');
+            });
         });
-    });
 
-    dropzone.addEventListener('drop', (e) => {
-        const files = e.dataTransfer.files;
-        if (files && files.length > 0) {
-            handleFileSelect(files[0]);
-        }
-    });
+        dropzone.addEventListener('drop', (e) => {
+            const files = e.dataTransfer.files;
+            if (files && files.length > 0) {
+                handleFileSelect(files[0]);
+            }
+        });
+    }
 
-    fileInput.addEventListener('change', (e) => {
-        if (e.target.files && e.target.files.length > 0) {
-            handleFileSelect(e.target.files[0]);
-        }
-    });
+    if (fileInput) {
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files.length > 0) {
+                handleFileSelect(e.target.files[0]);
+            }
+        });
+    }
 
     // Price Input Listeners
-    inputPriceColor.addEventListener('input', updateCostCalculator);
-    inputPriceBw.addEventListener('input', updateCostCalculator);
+    if (inputPriceColor) inputPriceColor.addEventListener('input', updateCostCalculator);
+    if (inputPriceBw) inputPriceBw.addEventListener('input', updateCostCalculator);
 
     // Filter Buttons
     filterBtns.forEach(btn => {
@@ -129,17 +139,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    btnResetCategories.addEventListener('click', () => {
-        if (originalData) {
-            pagesData = JSON.parse(JSON.stringify(originalData.pages));
-            updateUI();
-        }
-    });
+    if (btnResetCategories) {
+        btnResetCategories.addEventListener('click', () => {
+            if (originalData) {
+                pagesData = JSON.parse(JSON.stringify(originalData.pages));
+                updateUI();
+            }
+        });
+    }
 
-    // Download Handlers
-    if (btnDownloadColor) btnDownloadColor.addEventListener('click', () => triggerPdfGeneration('color'));
-    if (btnDownloadBw) btnDownloadBw.addEventListener('click', () => triggerPdfGeneration('bw'));
-    if (btnDownloadZip) btnDownloadZip.addEventListener('click', () => triggerPdfGeneration('zip'));
+    // Download Handlers (Robust & Fail-safe)
+    if (btnDownloadColor) {
+        btnDownloadColor.addEventListener('click', (e) => {
+            e.preventDefault();
+            triggerPdfGeneration('color', btnDownloadColor);
+        });
+    }
+    if (btnDownloadBw) {
+        btnDownloadBw.addEventListener('click', (e) => {
+            e.preventDefault();
+            triggerPdfGeneration('bw', btnDownloadBw);
+        });
+    }
+    if (btnDownloadZip) {
+        btnDownloadZip.addEventListener('click', (e) => {
+            e.preventDefault();
+            triggerPdfGeneration('zip', btnDownloadZip);
+        });
+    }
 
     if (btnResetApp) {
         btnResetApp.addEventListener('click', (e) => {
@@ -153,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     browseBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            fileInput.click();
+            if (fileInput) fileInput.click();
         });
     });
 
@@ -230,21 +257,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const bwCount = pagesData.filter(p => p.category === 'bw').length;
 
         // Counters
-        valTotalPages.textContent = total;
-        valColorPages.textContent = colorCount;
-        valBwPages.textContent = bwCount;
+        if (valTotalPages) valTotalPages.textContent = total;
+        if (valColorPages) valColorPages.textContent = colorCount;
+        if (valBwPages) valBwPages.textContent = bwCount;
 
         // Filter Counts
-        countFilterAll.textContent = total;
-        countFilterColor.textContent = colorCount;
-        countFilterBw.textContent = bwCount;
+        if (countFilterAll) countFilterAll.textContent = total;
+        if (countFilterColor) countFilterColor.textContent = colorCount;
+        if (countFilterBw) countFilterBw.textContent = bwCount;
 
         // Subtexts on Download Buttons
-        subTextDownloadColor.textContent = `${colorCount} Halaman`;
-        subTextDownloadBw.textContent = `${bwCount} Halaman`;
+        if (subTextDownloadColor) subTextDownloadColor.textContent = `${colorCount} Halaman`;
+        if (subTextDownloadBw) subTextDownloadBw.textContent = `${bwCount} Halaman`;
 
-        btnDownloadColor.disabled = colorCount === 0;
-        btnDownloadBw.disabled = bwCount === 0;
+        if (btnDownloadColor) btnDownloadColor.disabled = colorCount === 0;
+        if (btnDownloadBw) btnDownloadBw.disabled = bwCount === 0;
 
         updateCostCalculator();
         renderThumbnails();
@@ -255,21 +282,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const colorCount = pagesData.filter(p => p.category === 'color').length;
         const bwCount = pagesData.filter(p => p.category === 'bw').length;
 
-        const priceColor = parseFloat(inputPriceColor.value) || 0;
-        const priceBw = parseFloat(inputPriceBw.value) || 0;
+        const priceColor = parseFloat(inputPriceColor ? inputPriceColor.value : 1000) || 0;
+        const priceBw = parseFloat(inputPriceBw ? inputPriceBw.value : 250) || 0;
 
         const totalAllColor = total * priceColor;
         const totalSplit = (colorCount * priceColor) + (bwCount * priceBw);
         const saved = Math.max(0, totalAllColor - totalSplit);
         const percent = totalAllColor > 0 ? Math.round((saved / totalAllColor) * 100) : 0;
 
-        costAllColor.textContent = formatRupiah(totalAllColor);
-        costSplit.textContent = formatRupiah(totalSplit);
-        valMoneySaved.textContent = formatRupiah(saved);
-        valSavingsPercent.textContent = `Hemat ${percent}%`;
+        if (costAllColor) costAllColor.textContent = formatRupiah(totalAllColor);
+        if (costSplit) costSplit.textContent = formatRupiah(totalSplit);
+        if (valMoneySaved) valMoneySaved.textContent = formatRupiah(saved);
+        if (valSavingsPercent) valSavingsPercent.textContent = `HEMAT ${percent}%`;
     }
 
     function renderThumbnails() {
+        if (!thumbnailsGrid) return;
         thumbnailsGrid.innerHTML = '';
 
         const filteredPages = pagesData.filter(p => {
@@ -280,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (filteredPages.length === 0) {
             thumbnailsGrid.innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">
+                <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--skeuo-text-muted);">
                     <i class="fa-solid fa-folder-open" style="font-size: 32px; margin-bottom: 8px;"></i>
                     <p>Tidak ada halaman untuk kategori ini.</p>
                 </div>
@@ -302,10 +330,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="thumb-details">
                     <div class="thumb-meta">
-                        <span><strong>Hal ${page.page_number}</strong></span>
+                        <span>Hal ${page.page_number}</span>
                         <small style="opacity: 0.7;">${page.color_score}% warna</small>
                     </div>
-                    <button class="btn-toggle-cat ${isColor ? 'to-bw' : 'to-color'}" data-page="${page.page_number}">
+                    <button class="btn-toggle-cat ${isColor ? 'to-bw' : 'to-color'}" data-page="${page.page_number}" type="button">
                         <i class="fa-solid ${isColor ? 'fa-font' : 'fa-palette'}"></i>
                         ${isColor ? 'Ubah ke B/W' : 'Ubah ke Warna'}
                     </button>
@@ -313,24 +341,34 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             const toggleBtn = card.querySelector('.btn-toggle-cat');
-            toggleBtn.addEventListener('click', () => {
-                page.category = page.category === 'color' ? 'bw' : 'color';
-                updateUI();
-            });
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    page.category = page.category === 'color' ? 'bw' : 'color';
+                    updateUI();
+                });
+            }
 
             thumbnailsGrid.appendChild(card);
         });
     }
 
-    async function triggerPdfGeneration(targetType) {
-        if (!currentSessionId) return;
+    async function triggerPdfGeneration(targetType, btnElement) {
+        if (!currentSessionId) {
+            alert("Sesi tidak ditemukan. Silakan unggah ulang dokumen.");
+            return;
+        }
 
         const payload = {
             session_id: currentSessionId,
             pages: pagesData.map(p => ({ page_number: p.page_number, category: p.category })),
-            color_price: parseFloat(inputPriceColor.value) || 1000,
-            bw_price: parseFloat(inputPriceBw.value) || 250
+            color_price: parseFloat(inputPriceColor ? inputPriceColor.value : 1000) || 1000,
+            bw_price: parseFloat(inputPriceBw ? inputPriceBw.value : 250) || 250
         };
+
+        if (btnElement) {
+            btnElement.disabled = true;
+            btnElement.style.opacity = '0.6';
+        }
 
         try {
             // Send updated classifications to generate split PDFs
@@ -345,11 +383,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(errData.detail || 'Gagal menghasilkan PDF.');
             }
 
-            // Trigger file download
-            window.location.href = `/api/download/${currentSessionId}/${targetType}`;
+            // Reliable file download using an anchor element
+            const downloadUrl = `/api/download/${currentSessionId}/${targetType}`;
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.setAttribute('download', '');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
 
         } catch (error) {
             alert(`Gagal mengunduh file: ${error.message}`);
+        } finally {
+            if (btnElement) {
+                btnElement.disabled = false;
+                btnElement.style.opacity = '1';
+            }
         }
     }
 
@@ -374,9 +423,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        uploadSection.classList.remove('hidden');
-        progressSection.classList.add('hidden');
-        resultsSection.classList.add('hidden');
+        if (uploadSection) uploadSection.classList.remove('hidden');
+        if (progressSection) progressSection.classList.add('hidden');
+        if (resultsSection) resultsSection.classList.add('hidden');
 
         // Smooth scroll to top of page
         window.scrollTo({ top: 0, behavior: 'smooth' });
