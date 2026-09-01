@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SeparaPDF - Pemisah Halaman PDF Berwarna vs Hitam-Putih</title>
-    <meta name="description" content="Aplikasi pemisah halaman PDF otomatis untuk mahasiswa skripsi. Pisahkan halaman berwarna dan hitam-putih dalam hitungan detik untuk hemat biaya cetak skripsi.">
-    
+    <meta name="description"
+        content="Aplikasi pemisah halaman PDF otomatis untuk mahasiswa skripsi. Pisahkan halaman berwarna dan hitam-putih dalam hitungan detik untuk hemat biaya cetak skripsi.">
+
     <!-- Google Fonts: Plus Jakarta Sans & Rajdhani -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Rajdhani:wght@600;700&display=swap"
+        rel="stylesheet">
+
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <!-- Custom Skeuomorphic CSS -->
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body class="skeuo-theme">
 
     <!-- Navigation Header -->
@@ -29,7 +34,7 @@
                 </div>
                 <div class="logo-text">
                     <span class="brand-title">SEPARA<span class="brand-highlight">PDF</span></span>
-                    <span class="brand-tag">Pemisah Warna & B/W</span>
+                    <span class="brand-tag">PEMISAH WARNA & HITAM PUTIH</span>
                 </div>
             </div>
             <div class="header-badges">
@@ -47,7 +52,9 @@
                 Cetak Skripsi <span class="highlight-gold-text">Jauh Lebih Hemat</span>
             </h1>
             <p class="hero-subtitle">
-                Unggah PDF skripsi Anda. Sistem memindai & memisahkan halaman <strong class="text-color-accent">Berwarna</strong> & <strong class="text-bw-accent">Hitam-Putih</strong> secara otomatis.
+                Unggah PDF skripsi Anda. Sistem memindai & memisahkan halaman <strong
+                    class="text-color-accent">Berwarna</strong> & <strong class="text-bw-accent">Hitam-Putih</strong>
+                secara otomatis.
             </p>
         </section>
 
@@ -60,8 +67,10 @@
                         <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
                     </div>
                     <h2>Tarik & Lepaskan File PDF Skripsi di Sini</h2>
-                    <p class="upload-hint">atau <span class="browse-btn skeuo-btn-sm">Pilih File dari Perangkat</span></p>
-                    <span class="upload-specs skeuo-inset-badge"><i class="fa-solid fa-circle-info"></i> Format PDF | Maksimal 50 MB (hingga ~300+ Halaman)</span>
+                    <p class="upload-hint">atau <span class="browse-btn skeuo-btn-sm">Pilih File dari Perangkat</span>
+                    </p>
+                    <span class="upload-specs skeuo-inset-badge"><i class="fa-solid fa-circle-info"></i> Format PDF |
+                        Maksimal 50 MB (hingga ~300+ Halaman)</span>
                 </div>
             </div>
 
@@ -73,9 +82,12 @@
                 </div>
                 <div class="settings-body" id="settingsBody">
                     <div class="setting-item">
-                        <label for="thresholdRange">Toleransi Deteksi Warna (Threshold): <strong id="thresholdVal" class="skeuo-badge-inline">18</strong></label>
-                        <input type="range" id="thresholdRange" min="5" max="40" value="18" step="1" class="skeuo-slider">
-                        <small>Gunakan nilai lebih tinggi jika dokumen Anda hasil scan yang memiliki bayangan kertas agak kekuningan/abu-abu.</small>
+                        <label for="thresholdRange">Toleransi Deteksi Warna (Threshold): <strong id="thresholdVal"
+                                class="skeuo-badge-inline">18</strong></label>
+                        <input type="range" id="thresholdRange" min="5" max="40" value="18" step="1"
+                            class="skeuo-slider">
+                        <small>Gunakan nilai lebih tinggi jika dokumen Anda hasil scan yang memiliki bayangan kertas
+                            agak kekuningan/abu-abu.</small>
                     </div>
                 </div>
             </div>
@@ -173,14 +185,18 @@
                         <small>Klik tombol pada thumbnail untuk mengoreksi halaman yang salah terdeteksi</small>
                     </div>
                     <div class="filter-controls skeuo-button-group">
-                        <button class="filter-btn skeuo-btn active" data-filter="all" type="button">SEMUA (<span id="countFilterAll">0</span>)</button>
-                        <button class="filter-btn skeuo-btn" data-filter="color" type="button">BERWARNA (<span id="countFilterColor">0</span>)</button>
-                        <button class="filter-btn skeuo-btn" data-filter="bw" type="button">HITAM-PUTIH (<span id="countFilterBw">0</span>)</button>
+                        <button class="filter-btn skeuo-btn active" data-filter="all" type="button">SEMUA (<span
+                                id="countFilterAll">0</span>)</button>
+                        <button class="filter-btn skeuo-btn" data-filter="color" type="button">BERWARNA (<span
+                                id="countFilterColor">0</span>)</button>
+                        <button class="filter-btn skeuo-btn" data-filter="bw" type="button">HITAM-PUTIH (<span
+                                id="countFilterBw">0</span>)</button>
                     </div>
                 </div>
 
                 <div class="quick-actions-bar">
-                    <button class="action-btn skeuo-btn btn-metallic-tactile" id="btnResetCategories" type="button"><i class="fa-solid fa-rotate-left"></i> Reset Deteksi Awal</button>
+                    <button class="action-btn skeuo-btn btn-metallic-tactile" id="btnResetCategories" type="button"><i
+                            class="fa-solid fa-rotate-left"></i> Reset Deteksi Awal</button>
                 </div>
 
                 <!-- Grid Container -->
@@ -195,7 +211,7 @@
                     <h2><i class="fa-solid fa-download"></i> UNDUH FILE PDF TERPISAH</h2>
                     <p>File hasil pisah siap langsung dibawa ke tempat fotokopi/print!</p>
                 </div>
-                
+
                 <div class="download-buttons">
                     <button id="btnDownloadColor" type="button" class="btn skeuo-push-btn btn-color-skeuo">
                         <i class="fa-solid fa-file-arrow-down"></i>
@@ -223,7 +239,8 @@
                 </div>
 
                 <div class="reset-wrapper">
-                    <button id="btnResetApp" type="button" class="btn-link skeuo-btn-sm"><i class="fa-solid fa-arrow-left"></i> Unggah & Proses Dokumen Lain</button>
+                    <button id="btnResetApp" type="button" class="btn-link skeuo-btn-sm"><i
+                            class="fa-solid fa-arrow-left"></i> Unggah & Proses Dokumen Lain</button>
                 </div>
             </div>
         </section>
@@ -233,11 +250,13 @@
     <footer class="site-footer skeuo-footer">
         <div class="container footer-content">
             <p><strong>SEPARAPDF</strong> &copy; 2026. Solusi Cerdas Hemat Cetak Skripsi Mahasiswa.</p>
-            <p class="privacy-note"><i class="fa-solid fa-lock"></i> File diunggah secara aman dan otomatis dihapus dari sistem demi menjaga kerahasiaan dokumen Anda.</p>
+            <p class="privacy-note"><i class="fa-solid fa-lock"></i> File diunggah secara aman dan otomatis dihapus dari
+                sistem demi menjaga kerahasiaan dokumen Anda.</p>
         </div>
     </footer>
 
     <!-- JS Scripts -->
     <script src="/static/js/app.js"></script>
 </body>
+
 </html>
