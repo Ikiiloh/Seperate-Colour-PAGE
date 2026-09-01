@@ -4,17 +4,17 @@ Aplikasi Web modern untuk memindai dokumen PDF (seperti draft skripsi/tugas akhi
 
 ---
 
-## 🚀 Fitur Utama
+## Fitur Utama
 
-- ⚡ **Deteksi Warna Otomatis**: Memindai channel RGB piksel dengan algoritma toleransi noise scan.
-- 🎨 **Visual Preview & Koreksi Manual**: Menampilkan thumbnail setiap halaman dan memungkinkan pengguna mengoreksi klasifikasi halaman (Toggle Berwarna / Hitam-Putih) secara manual sebelum mengunduh.
-- 💰 **Kalkulator Hemat Biaya Cetak**: Menghitung estimasi biaya print warna vs print pisah secara real-time.
-- 📦 **Download Paket ZIP & File Terpisah**: Unduh PDF Berwarna, PDF Hitam-Putih, atau keduanya dalam satu paket ZIP.
-- 🔒 **Privacy First**: File sementara otomatis dihapus dari server setelah diproses.
+- **Deteksi Warna Otomatis**: Memindai channel RGB piksel dengan algoritma toleransi noise scan.
+- **Visual Preview & Koreksi Manual**: Menampilkan thumbnail setiap halaman dan memungkinkan pengguna mengoreksi klasifikasi halaman (Toggle Berwarna / Hitam-Putih) secara manual sebelum mengunduh.
+- **Kalkulator Hemat Biaya Cetak**: Menghitung estimasi biaya print warna vs print pisah secara real-time.
+- **Download Paket ZIP & File Terpisah**: Unduh PDF Berwarna, PDF Hitam-Putih, atau keduanya dalam satu paket ZIP.
+- **Privacy First**: File sementara otomatis dihapus dari server setelah diproses.
 
 ---
 
-## 🛠️ Cara Menjalankan Secara Lokal
+## Cara Menjalankan Secara Lokal
 
 ### Prasyarat
 - Python 3.10+
@@ -43,7 +43,7 @@ Aplikasi Web modern untuk memindai dokumen PDF (seperti draft skripsi/tugas akhi
 
 ---
 
-## ☁️ Cara Deploy ke Render (Free Tier)
+## Cara Deploy ke Render (Free Tier)
 
 Aplikasi ini siap didaftarkan di [Render.com](https://render.com) (Python Web Service):
 
@@ -56,7 +56,7 @@ Aplikasi ini siap didaftarkan di [Render.com](https://render.com) (Python Web Se
 
 ---
 
-## 📂 Struktur Project
+## Struktur Project
 
 ```text
 Seperate-Colour-PAGE/
