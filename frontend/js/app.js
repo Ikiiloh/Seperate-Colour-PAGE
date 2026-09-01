@@ -6,7 +6,7 @@
 // CONFIG: Ganti nilai ini dengan URL Hugging Face Space kamu
 // setelah deploy backend. Format: https://USERNAME-SPACENAME.hf.space
 // =============================================================
-const API_BASE_URL = window.SEPARA_API_URL || 'https://GANTI-DENGAN-URL-HF-SPACE-KAMU.hf.space';
+const API_BASE_URL = window.SEPARA_API_URL || 'https://separate-skripsi-4273e.containers.snapdeploy.app';
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Elements ---
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         progressBarFill.style.width = '20%';
         progressTitle.textContent = `Memindai ${file.name}...`;
-        scanStatus.textContent = 'Mengunggah file ke server...';
+        scanStatus.textContent = 'Membangunkan server... (mohon tunggu 30-60 detik jika baru pertama kali)';
 
         const formData = new FormData();
         formData.append('file', file);

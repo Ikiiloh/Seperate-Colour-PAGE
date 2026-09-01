@@ -38,7 +38,7 @@
 body.skeuo-theme {
     font-family: var(--font-body);
     background-color: var(--skeuo-bg-desk);
-    background-image: 
+    background-image:
         radial-gradient(circle at 50% 30%, rgba(59, 130, 246, 0.08), transparent 70%),
         radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.05), transparent 60%),
         linear-gradient(135deg, #1c2230 0%, #121620 100%);
@@ -105,7 +105,7 @@ body.skeuo-theme {
     border-radius: 50%;
     padding: 3px;
     color: var(--skeuo-cyan-top);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .logo-text {
@@ -164,7 +164,7 @@ body.skeuo-theme {
     background: linear-gradient(180deg, var(--skeuo-card-top) 0%, var(--skeuo-card-bottom) 100%);
     border: 1px solid var(--skeuo-card-border-light);
     border-bottom: 1px solid var(--skeuo-card-border-dark);
-    box-shadow: 
+    box-shadow:
         0 14px 35px rgba(0, 0, 0, 0.55),
         inset 0 1px 0 rgba(255, 255, 255, 0.2),
         inset 0 -1px 0 rgba(0, 0, 0, 0.4);
@@ -221,7 +221,7 @@ body.skeuo-theme {
 .skeuo-inset-panel {
     background: linear-gradient(180deg, #10141e 0%, #19202c 100%);
     border: 1px solid rgba(0, 0, 0, 0.8);
-    box-shadow: 
+    box-shadow:
         inset 0 6px 14px rgba(0, 0, 0, 0.7),
         inset 0 -1px 0 rgba(255, 255, 255, 0.1),
         0 1px 0 rgba(255, 255, 255, 0.1);
@@ -233,9 +233,10 @@ body.skeuo-theme {
     transition: all 0.2s ease;
 }
 
-.upload-zone:hover, .upload-zone.drag-over {
+.upload-zone:hover,
+.upload-zone.drag-over {
     border-color: var(--skeuo-cyan-top);
-    box-shadow: 
+    box-shadow:
         inset 0 6px 14px rgba(0, 0, 0, 0.8),
         0 0 20px rgba(6, 182, 212, 0.25);
 }
@@ -267,7 +268,7 @@ body.skeuo-theme {
 .upload-icon {
     font-size: 32px;
     color: #fff;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .upload-content h2 {
@@ -298,7 +299,7 @@ body.skeuo-theme {
     padding: 6px 14px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
     font-size: 0.82rem;
     color: var(--skeuo-text-dim);
 }
@@ -343,7 +344,7 @@ body.skeuo-theme {
     padding: 2px 8px;
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .skeuo-slider {
@@ -363,7 +364,7 @@ body.skeuo-theme {
     background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
     border: 3px solid #3b82f6;
     border-radius: 50%;
-    box-shadow: inset 0 3px 8px rgba(0,0,0,0.7), 0 0 15px rgba(59, 130, 246, 0.3);
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.7), 0 0 15px rgba(59, 130, 246, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -388,7 +389,7 @@ body.skeuo-theme {
     background: #0f172a;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 3px 6px rgba(0,0,0,0.7);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.7);
     margin: 20px auto 12px;
     overflow: hidden;
 }
@@ -398,7 +399,7 @@ body.skeuo-theme {
     height: 100%;
     background: linear-gradient(90deg, #3b82f6, #f59e0b);
     border-radius: 10px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
     transition: width 0.3s ease;
 }
 
@@ -435,7 +436,7 @@ body.skeuo-theme {
     background: #111622;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 3px 6px rgba(0,0,0,0.6);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -444,9 +445,17 @@ body.skeuo-theme {
     flex-shrink: 0;
 }
 
-.card-color-theme .skeuo-icon-inset { color: #fbbf24; }
-.card-bw-theme .skeuo-icon-inset { color: #cbd5e1; }
-.card-green-theme .skeuo-icon-inset { color: #34d399; }
+.card-color-theme .skeuo-icon-inset {
+    color: #fbbf24;
+}
+
+.card-bw-theme .skeuo-icon-inset {
+    color: #cbd5e1;
+}
+
+.card-green-theme .skeuo-icon-inset {
+    color: #34d399;
+}
 
 .stat-info {
     display: flex;
@@ -467,12 +476,20 @@ body.skeuo-theme {
     font-weight: 700;
     line-height: 1.1;
     color: #ffffff;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.color-text { color: #fbbf24; }
-.bw-text { color: #e2e8f0; }
-.green-text { color: #34d399; }
+.color-text {
+    color: #fbbf24;
+}
+
+.bw-text {
+    color: #e2e8f0;
+}
+
+.green-text {
+    color: #34d399;
+}
 
 .skeuo-inset-tag {
     display: inline-block;
@@ -483,7 +500,7 @@ body.skeuo-theme {
     padding: 2px 8px;
     border-radius: 6px;
     border: 1px solid rgba(52, 211, 153, 0.2);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
     margin-top: 4px;
     width: fit-content;
 }
@@ -502,7 +519,7 @@ body.skeuo-theme {
     align-items: center;
     gap: 10px;
     color: #93c5fd;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .estimator-form {
@@ -527,7 +544,7 @@ body.skeuo-theme {
     background: #0f172a;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 3px 6px rgba(0,0,0,0.7);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.7);
 }
 
 .currency-prefix {
@@ -557,7 +574,7 @@ body.skeuo-theme {
     background: #090d16;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 4px 10px rgba(0,0,0,0.8);
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.8);
     padding: 12px 18px;
     display: flex;
     flex-direction: column;
@@ -670,14 +687,14 @@ body.skeuo-theme {
 .thumbnails-grid::-webkit-scrollbar-thumb {
     background: #334155;
     border-radius: 4px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .thumb-card {
     background: #ffffff;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -724,7 +741,7 @@ body.skeuo-theme {
     font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 4px rgba(0,0,0,0.4);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .badge-color-tag {
@@ -817,7 +834,7 @@ body.skeuo-theme {
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    box-shadow: 
+    box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.4),
         inset 0 -2px 0 rgba(0, 0, 0, 0.3),
         0 8px 16px rgba(0, 0, 0, 0.4);
@@ -835,14 +852,14 @@ body.skeuo-theme {
 
 .skeuo-push-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 
+    box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.5),
         0 12px 24px rgba(0, 0, 0, 0.5);
 }
 
 .skeuo-push-btn:active {
     transform: translateY(2px);
-    box-shadow: 
+    box-shadow:
         inset 0 3px 6px rgba(0, 0, 0, 0.5),
         0 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -924,37 +941,47 @@ body.skeuo-theme {
     .hero-title {
         font-size: 2.2rem;
     }
+
     .header-badges {
         display: none;
     }
+
     .skeuo-card {
         padding: 20px 14px;
     }
+
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
+
     .estimator-form {
         grid-template-columns: 1fr;
     }
+
     .preview-header {
         flex-direction: column;
         align-items: stretch;
     }
+
     .filter-controls {
         width: 100%;
         justify-content: space-between;
     }
+
     .filter-btn {
         flex: 1;
         padding: 8px 4px;
     }
+
     .quick-actions-bar {
         flex-direction: column;
     }
+
     .action-btn {
         width: 100%;
     }
+
     .download-buttons {
         grid-template-columns: 1fr;
     }
@@ -964,9 +991,11 @@ body.skeuo-theme {
     .hero-title {
         font-size: 1.7rem;
     }
+
     .brand-title {
         font-size: 1.25rem;
     }
+
     .thumbnails-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
@@ -977,6 +1006,7 @@ body.skeuo-theme {
     .stats-grid {
         grid-template-columns: 1fr;
     }
+
     .thumbnails-grid {
         grid-template-columns: 1fr;
     }

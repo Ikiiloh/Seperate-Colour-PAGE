@@ -1,0 +1,30 @@
+# Application files not needed in the backend image
+frontend/
+temp_sessions/
+
+# Python cache and environments
+__pycache__/
+*.pyc
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Git and CI
+.git/
+.github/
+.vscode/
+.idea/
+
+# Secrets and local config
+.env
+.env.*
+*.env
+
+# Deployment/other platform configs not needed by Docker build
+render.yaml
+Procfile
+
+# System files
+.DS_Store
+Thumbs.db
