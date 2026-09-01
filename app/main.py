@@ -2,8 +2,7 @@ import os
 import uuid
 import zipfile
 from fastapi import FastAPI, File, UploadFile, HTTPException, Form, BackgroundTasks
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional
@@ -13,10 +12,8 @@ from app.cleanup import cleanup_old_sessions
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMP_DIR = os.path.join(BASE_DIR, "temp_sessions")
-STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 os.makedirs(TEMP_DIR, exist_ok=True)
-os.makedirs(STATIC_DIR, exist_ok=True)
 
 app = FastAPI(
     title="Pemisah Halaman PDF Berwarna vs Hitam-Putih",
@@ -25,6 +22,9 @@ app = FastAPI(
 )
 
 # Enable CORS
+# Frontend di-host terpisah di Vercel.
+# Setelah deploy, ganti ["*"] dengan URL Vercel kamu:
+# allow_origins=["https://nama-project.vercel.app"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -177,16 +177,6 @@ def download_pdf(session_id: str, file_type: str):
         filename=download_name,
         media_type=media_type
     )
-
-# Mount static files for frontend assets
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
-
-@app.get("/")
-def read_root():
-    index_path = os.path.join(STATIC_DIR, "index.html")
-    if os.path.exists(index_path):
-        return FileResponse(index_path)
-    return {"message": "Frontend static file index.html belum dibuat."}
 
 if __name__ == "__main__":
     import uvicorn
