@@ -115,15 +115,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Quick Actions
-    btnMarkAllColor.addEventListener('click', () => {
-        pagesData.forEach(p => p.category = 'color');
-        updateUI();
-    });
+    if (btnMarkAllColor) {
+        btnMarkAllColor.addEventListener('click', () => {
+            pagesData.forEach(p => p.category = 'color');
+            updateUI();
+        });
+    }
 
-    btnMarkAllBw.addEventListener('click', () => {
-        pagesData.forEach(p => p.category = 'bw');
-        updateUI();
-    });
+    if (btnMarkAllBw) {
+        btnMarkAllBw.addEventListener('click', () => {
+            pagesData.forEach(p => p.category = 'bw');
+            updateUI();
+        });
+    }
 
     btnResetCategories.addEventListener('click', () => {
         if (originalData) {
