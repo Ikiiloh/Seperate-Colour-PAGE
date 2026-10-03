@@ -1,89 +1,109 @@
 # Product Requirements Document (PRD)
 ## Web App Pemisah Halaman PDF (Berwarna vs Hitam-Putih)
 
-**Disusun oleh:** Riski Ramadani
-**Tanggal:** September 2026
-**Versi:** 1.0
+**Disusun oleh:** Riski Ramadani  
+**Tanggal Terakhir Diperbarui:** Oktober 2026  
+**Versi:** 2.0 (Client-Side Architecture)  
+**Status:** Implemented / Production Ready  
 
 ---
 
 ## 1. Latar Belakang
 
-Mahasiswa tingkat akhir yang sedang menyusun skripsi sering perlu mencetak draft berulang kali untuk keperluan bimbingan atau sidang. Draft skripsi biasanya terdiri dari ratusan halaman, namun hanya sebagian kecil (puluhan halaman) yang mengandung elemen berwarna seperti gambar, grafik, atau diagram — sisanya murni teks hitam di atas putih.
+Mahasiswa tingkat akhir yang sedang menyusun skripsi sering perlu mencetak draft berulang kali untuk keperluan bimbingan atau sidang. Draft skripsi biasanya terdiri dari ratusan halaman, namun hanya sebagian kecil (puluhan halaman) yang mengandung elemen berwarna seperti gambar, grafik, peta, logo, atau diagram — sisanya murni teks hitam di atas putih.
 
-Saat ini, memisahkan halaman berwarna dan tidak berwarna dilakukan secara manual satu per satu, yang memakan waktu dan rawan salah. Padahal, jika halaman dipisah dengan benar, halaman hitam-putih bisa dicetak dengan mode fotokopi (jauh lebih murah), sementara hanya halaman berwarna yang dicetak dengan mode warna. Ini berpotensi menghemat biaya cetak secara signifikan, terutama bagi mahasiswa kos yang budget-nya terbatas.
+Saat ini, memisahkan halaman berwarna dan tidak berwarna sering dilakukan secara manual satu per satu, yang memakan waktu dan rawan salah hitung. Padahal, jika halaman dipisah dengan benar, halaman hitam-putih bisa dicetak dengan mode monokrom/fotokopi (jauh lebih murah, misal Rp 250/lembar), sementara hanya halaman berwarna yang dicetak dengan tarif warna (misal Rp 1.000 – Rp 2.500/lembar). Ini menghemat biaya cetak secara signifikan.
+
+Untuk mengatasi hal tersebut tanpa ketergantungan server backend atau biaya langganan cloud hosting, aplikasi ini dibangun dengan **arsitektur 100% Client-Side**, di mana seluruh proses scanning piksel, pembuatan thumbnail, koreksi kategori, hingga pembagian file PDF dilakukan langsung di dalam memori browser pengguna.
+
+---
 
 ## 2. Tujuan Produk
 
-- Menyediakan alat otomatis yang dapat memindai sebuah file PDF dan mengelompokkan halamannya menjadi dua kategori: **berwarna** dan **hitam-putih**
-- Menghasilkan dua file PDF terpisah yang siap dibawa ke tempat print
-- Dapat diakses publik secara online tanpa instalasi, gratis, dan mudah digunakan oleh siapa saja
+- Menyediakan alat otomatis berbasis web yang dapat memindai file PDF dan mengelompokkan halamannya menjadi dua kategori: **berwarna** (*color*) dan **hitam-putih** (*black & white*).
+- Menghasilkan dua file PDF terpisah atau satu paket arsip ZIP yang siap dibawa ke tempat print/percetakan.
+- Menyediakan kalkulator estimasi penghematan biaya cetak secara *real-time*.
+- **Zero-Server / Serverless**: 100% privasi terjaga (file dokumen tidak pernah keluar dari perangkat pengguna), instan tanpa antrean server, dan bebas biaya operasional hosting.
+- Dapat diakses publik secara online tanpa instalasi, tanpa registrasi/login, dan responsif di berbagai perangkat.
+
+---
 
 ## 3. Target Pengguna
 
-- Mahasiswa tingkat akhir yang sedang mencetak draft skripsi/tugas akhir
-- Mahasiswa kos dengan keterbatasan budget cetak
-- Siapa pun yang perlu mencetak dokumen PDF campuran (berwarna + hitam-putih) secara hemat
+- Mahasiswa tingkat akhir yang sedang mencetak draft skripsi, tesis, atau tugas akhir.
+- Dosen, peneliti, dan akademisi yang mencetak artikel jurnal/buku.
+- Mahasiswa kos dengan keterbatasan budget cetak.
+- Siapa pun yang perlu mencetak dokumen PDF campuran (berwarna + hitam-putih) secara hemat dan efisien.
+
+---
 
 ## 4. User Stories
 
-1. **Sebagai mahasiswa**, saya ingin mengunggah file PDF skripsi saya, agar sistem bisa mendeteksi halaman mana saja yang berwarna dan mana yang hitam-putih.
-2. **Sebagai mahasiswa**, saya ingin mengunduh dua file PDF terpisah (berwarna dan hitam-putih), agar saya bisa langsung membawanya ke tempat print tanpa perlu memilah manual.
-3. **Sebagai mahasiswa**, saya ingin melihat ringkasan sebelum mengunduh (misalnya "12 halaman berwarna, 188 halaman hitam-putih"), agar saya tahu estimasi biaya cetak.
-4. **Sebagai pengguna baru**, saya ingin proses ini cepat dan tanpa perlu membuat akun, agar saya bisa langsung pakai saat mendesak.
+1. **Sebagai mahasiswa**, saya ingin mengunggah file PDF skripsi saya dengan mudah (drag-and-drop), agar sistem otomatis mendeteksi halaman mana yang berwarna dan mana yang hitam-putih.
+2. **Sebagai pengguna**, saya ingin file PDF saya aman dan tidak diunggah ke server orang lain untuk menjaga kerahasiaan dokumen tugas akhir saya.
+3. **Sebagai pengguna**, saya ingin melihat galeri thumbnail setiap halaman dengan persentase warnanya dan bisa mengubah kategorinya hanya dengan satu klik bila ada salah deteksi.
+4. **Sebagai pengguna**, saya ingin melihat pratinjau halaman resolusi tinggi (modal preview) dengan navigasi keyboard agar yakin sebelum mencetak.
+5. **Sebagai mahasiswa**, saya ingin melihat estimasi biaya cetak dan berapa rupiah yang berhasil saya hemat dengan memisahkan halaman tersebut.
+6. **Sebagai pengguna**, saya ingin mengunduh PDF Berwarna, PDF Hitam-Putih, atau langsung keduanya dalam satu paket ZIP.
+
+---
 
 ## 5. Functional Requirements
 
-| No | Requirement | Prioritas |
-|----|-------------|-----------|
-| FR-1 | Pengguna dapat mengunggah file PDF (drag & drop atau pilih file) | Must have |
-| FR-2 | Sistem merender setiap halaman PDF menjadi gambar untuk dianalisis | Must have |
-| FR-3 | Sistem mendeteksi apakah suatu halaman mengandung warna, berdasarkan analisis piksel (channel R, G, B) dengan toleransi threshold untuk noise scan | Must have |
-| FR-4 | Sistem mengelompokkan halaman ke 2 kategori dan menyusun ulang jadi 2 file PDF baru, tanpa mengubah urutan asli tiap kategori | Must have |
-| FR-5 | Pengguna dapat mengunduh kedua file hasil (PDF berwarna & PDF hitam-putih) | Must have |
-| FR-6 | Sistem menampilkan ringkasan jumlah halaman per kategori sebelum/sesudah proses | Should have |
-| FR-7 | Sistem menampilkan progress bar/status saat file sedang diproses (terutama untuk file besar) | Should have |
-| FR-8 | Sistem menghapus file yang diunggah setelah beberapa waktu (privasi & hemat storage) | Should have |
-| FR-9 | Sistem menampilkan preview thumbnail halaman yang terdeteksi berwarna vs hitam-putih | Could have |
-| FR-10 | Pengguna dapat mengoreksi manual jika ada halaman yang salah kategori sebelum download final | Could have |
+| No | Requirement | Keterangan / Spesifikasi | Prioritas | Status |
+|---|---|---|---|---|
+| **FR-1** | Unggah File PDF | Drag & drop atau browse file dengan validasi format `.pdf` dan batas wajar (hingga 50 MB) | Must have | Selesai |
+| **FR-2** | Rendering Halaman di Browser | Merender setiap halaman PDF menjadi viewport canvas menggunakan **PDF.js** | Must have | Selesai |
+| **FR-3** | Analisis Piksel Warna Otomatis | Deteksi deviasi channel RGB ($|R-G|$, $|G-B|$, $|B-R|$) dengan pengabaian background kertas putih dan tinta teks hitam | Must have | Selesai |
+| **FR-4** | Pengaturan Sensitivitas (Threshold) | Slider threshold interaktif untuk mengakomodasi dokumen hasil scan yang memiliki noise | Must have | Selesai |
+| **FR-5** | Galeri Thumbnail Interaktif | Menampilkan thumbnail seluruh halaman, nomor halaman, persentase warna, dan badge kategori | Must have | Selesai |
+| **FR-6** | Koreksi Manual Satu-Klik | Tombol toggle kategori per halaman (Warna $\leftrightarrow$ B/W) yang langsung memperbarui statistik | Must have | Selesai |
+| **FR-7** | High-Resolution Modal Preview | Modal preview resolusi tinggi saat kartu halaman diklik, lengkap dengan navigasi keyboard ($\leftarrow$, $\rightarrow$, `Esc`) | Must have | Selesai |
+| **FR-8** | Filter Tampilan & Batch Action | Tab filter (Semua, Berwarna, Hitam-Putih) serta aksi massal (*Tandai Semua Warna*, *Tandai Semua B/W*, *Reset*) | Must have | Selesai |
+| **FR-9** | Kalkulator Estimasi Biaya | Perhitungan biaya total cetak warna vs biaya pisah halaman dengan input tarif yang dapat diubah dan output format Rupiah | Must have | Selesai |
+| **FR-10** | Pemisahan Dokumen PDF di Browser | Menggunakan **pdf-lib** untuk mengekstrak dan menggabungkan halaman sesuai kategori final tanpa mengubah urutan kronologis | Must have | Selesai |
+| **FR-11** | Unduh PDF & Bundel ZIP | Opsi download file `Dokumen_Berwarna.pdf`, `Dokumen_Hitam_Putih.pdf`, atau `Paket_Cetak_PDF.zip` (via **JSZip**) | Must have | Selesai |
+| **FR-12** | Progress Bar Dinamis | Indikator visual persentase dan status pembacaan halaman selama proses pemindaian | Must have | Selesai |
+
+---
 
 ## 6. Non-Functional Requirements
 
-- **Performa**: mampu memproses dokumen hingga ~300 halaman dalam waktu wajar (target < 1-2 menit tergantung resource server free-tier)
-- **Batasan ukuran file**: dibatasi (misal maks 50 MB) untuk menjaga stabilitas di free-tier hosting
-- **Ketersediaan**: aplikasi web dapat diakses 24/7, dengan catatan free-tier hosting bisa "tidur" saat idle dan butuh waktu bangun ~30-50 detik pada akses pertama
-- **Privasi**: file yang diunggah tidak disimpan permanen, dihapus otomatis setelah diproses/dalam rentang waktu tertentu
-- **Kompatibilitas**: dapat diakses dari browser desktop maupun mobile
-- **Tanpa login**: tidak memerlukan pembuatan akun untuk mempercepat penggunaan
+- **Arsitektur (Client-Side Only)**: Tidak membutuhkan server backend (Python/Node backend tidak diperlukan).
+- **Privasi & Keamanan**: Dokumen 100% diproses di memori lokal browser pengguna (Zero Data Upload).
+- **Ketersediaan (Uptime)**: 100% ketersediaan hosting statis tanpa kendala *cold start* / *server sleep*.
+- **Performa**: Mampu memproses puluhan hingga ratusan halaman dengan efisien, dengan pembersihan memori canvas setelah pemrosesan tiap halaman.
+- **Kompatibilitas**: Berjalan mulus di seluruh modern desktop & mobile browser (Chrome, Edge, Firefox, Safari, Brave).
+- **Aksesibilitas & Tanpa Login**: Siap pakai secara instan tanpa perlu registrasi atau akun pengguna.
 
-## 7. Spesifikasi Teknis (Rekomendasi)
+---
 
-- **Backend**: Python + FastAPI
-- **Library pemrosesan PDF**: PyMuPDF (fitz) — untuk render halaman ke gambar dan ekstraksi/penyusunan ulang halaman PDF
-- **Logika deteksi warna**: analisis piksel per halaman (cek deviasi antar channel RGB) dengan threshold yang dapat dikalibrasi untuk mengurangi false positive akibat noise hasil scan
-- **Frontend**: halaman web sederhana (HTML/CSS/JS) untuk upload file, menampilkan progress, dan tombol download — bisa disajikan langsung dari server yang sama (tidak perlu hosting terpisah)
-- **Deployment**: Render (free tier) — mendukung Python web service tanpa kartu kredit, dengan catatan sleep setelah 15 menit idle
+## 7. Spesifikasi Teknis
+
+- **Struktur Aplikasi**: Single Page Application (SPA) Statis
+- **Bahasa & UI**: HTML5, Modern Skeuomorphic CSS, Vanilla JavaScript (ES6+)
+- **Library Rendering PDF**: [PDF.js](https://mozilla.github.io/pdf.js/) (v3.11.174) — render canvas & ekstraksi piksel warna
+- **Library Manipulasi PDF**: [pdf-lib](https://pdf-lib.js.org/) (v1.17.1) — pembuatan dan pemisahan dokumen PDF di browser
+- **Library Kompresi Arsip**: [JSZip](https://stuk.github.io/jszip/) (v3.10.1) — pembuatan bundel ZIP di sisi klien
+- **Aset & Tipografi**: Google Fonts (*Plus Jakarta Sans*, *Rajdhani*), FontAwesome 6
+- **Hosting / Deployment Target**: Vercel (disertai `vercel.json`), Netlify, GitHub Pages, atau Cloudflare Pages
+
+---
 
 ## 8. Metrik Keberhasilan
 
-- Akurasi deteksi halaman berwarna vs hitam-putih (target awal: >95% pada dokumen skripsi biasa)
-- Waktu proses rata-rata per 100 halaman
-- Jumlah pengguna unik yang memakai aplikasi (indikasi seberapa berguna untuk mahasiswa lain)
-- Tidak ada laporan file pengguna yang bocor/tersimpan tanpa izin
+- **Tingkat Privasi**: 0 byte dokumen yang dikirim ke server luar.
+- **Akurasi Deteksi**: >95% pada dokumen skripsi standar berbasis teks & gambar digital.
+- **Kecepatan**: Pemrosesan dokumen berlangsung dalam hitungan detik tergantung spesifikasi perangkat dan jumlah halaman.
+- **Kemudahan Penggunaan**: Pengguna dapat menyelesaikan alur pemisahan dan unduh dalam kurang dari 3 langkah mudah.
 
-## 9. Ruang Lingkup
+---
 
-**Termasuk (in-scope) untuk versi pertama (MVP):**
-- Upload PDF, deteksi warna per halaman, output 2 file PDF terpisah, download
+## 9. Penanganan Risiko
 
-**Tidak termasuk (out-of-scope) untuk versi pertama:**
-- Edit/anotasi PDF
-- Login/akun pengguna & riwayat upload
-- Deteksi selain warna (misal kompresi ukuran file, OCR, dll.)
-- Preview & koreksi manual per halaman (masuk fase berikutnya jika dibutuhkan)
+| Risiko Potensial | Strategi Mitigasi |
+|---|---|
+| **Noise pada Dokumen Hasil Scan** | Pengguna dapat menyesuaikan nilai slider threshold (misal: 25–35) untuk menyaring noise warna kertas kekuningan. |
+| **Konsumsi RAM pada PDF Sangat Tebal** | Implementasi pembersihan memori secara berkala (me-reset dimensi canvas temporary setelah ekstraksi ImageData selesai). |
+| **Ketergantungan CDN Library** | Menggunakan CDN publik berkecepatan tinggi dan terpercaya (Cloudflare cdnjs / unpkg) dengan versi library yang terkunci (*fixed version*). |
 
-## 10. Risiko & Catatan
-
-- Free-tier hosting bisa "tidur" saat idle → pengguna pertama setelah idle akan menunggu lebih lama; perlu dikomunikasikan di UI (misal pesan "sedang menyiapkan server, mohon tunggu")
-- Dokumen hasil scan (bukan native PDF) berisiko punya noise warna meski aslinya hitam-putih → perlu threshold yang dikalibrasi dengan baik, dan idealnya diuji dengan beberapa contoh dokumen skripsi nyata
-- Dokumen dengan halaman sangat banyak berisiko lambat diproses di server gratis dengan resource terbatas → perlu batasan ukuran/jumlah halaman di awal
