@@ -1,183 +1,271 @@
 # SeparaPDF — Pemisah Halaman PDF Berwarna vs Hitam-Putih
 
-Aplikasi web yang memisahkan halaman berwarna dan hitam-putih dari sebuah file PDF secara otomatis. Dibuat khusus untuk membantu mahasiswa menekan biaya cetak dokumen seperti skripsi atau laporan tugas akhir.
+Aplikasi web modern untuk memisahkan halaman **Berwarna** (*Color*) dan **Hitam-Putih** (*Black & White*) dari dokumen PDF secara otomatis dan presisi. Dirancang khusus untuk membantu mahasiswa, akademisi, dan profesional menghemat biaya cetak dokumen tebal seperti skripsi, tesis, disertasi, makalah, hingga laporan kerja.
 
 ---
 
-## Latar Belakang
+## 📌 Latar Belakang Masalah
 
-Dokumen skripsi umumnya terdiri dari ratusan halaman, namun hanya sebagian kecil yang benar-benar mengandung elemen berwarna seperti grafik, diagram, atau foto. Jika dicetak seluruhnya dengan mode warna, biayanya jauh lebih mahal dibanding mencetak halaman hitam-putih secara terpisah.
+Dokumen skripsi atau laporan akademik umumnya terdiri dari puluhan hingga ratusan halaman. Namun, biasanya hanya sebagian kecil halaman yang memuat elemen berwarna (seperti diagram, grafik, peta, logo, atau foto dokumentasi). 
 
-Aplikasi ini mengotomasi proses pemilahan yang biasanya dilakukan secara manual, sehingga pengguna cukup mengunggah satu file PDF dan langsung mendapatkan dua file PDF terpisah yang siap dibawa ke tempat cetak.
+Bila seluruh halaman dicetak dengan tarif *full-color* (biasanya Rp 1.000 – Rp 2.500/lembar), total pengeluaran menjadi sangat membengkak. Sementara itu, memilah halaman satu per satu secara manual memakan waktu dan rawan salah hitung.
 
----
-
-## Fitur Utama
-
-- Upload PDF via drag-and-drop atau pilih file dari perangkat
-- Analisis piksel per halaman untuk mendeteksi keberadaan warna (menggunakan deviasi channel RGB)
-- Pengaturan ambang batas sensitivitas (threshold) yang dapat dikalibrasi untuk mengakomodasi noise pada dokumen hasil scan
-- Tampilan ringkasan hasil: total halaman, jumlah halaman berwarna, jumlah halaman hitam-putih
-- Kalkulator estimasi biaya cetak dengan tarif yang dapat disesuaikan
-- Preview thumbnail setiap halaman beserta labelnya
-- Koreksi manual: pengguna dapat mengubah kategori halaman yang salah terdeteksi sebelum mengunduh
-- Unduh hasil sebagai PDF berwarna, PDF hitam-putih, atau keduanya sekaligus dalam satu file ZIP
-- File yang diunggah dihapus otomatis dari server setelah diproses (tidak disimpan permanen)
-- Tidak memerlukan akun atau login
+**SeparaPDF** mengotomatisasi proses pemilahan halaman dalam hitungan detik. Pengguna cukup mengunggah file PDF dan sistem akan memisahkan dokumen menjadi dua file PDF terpisah yang siap dicetak di percetakan (*copy center*).
 
 ---
 
-## Tumpukan Teknologi
+## ✨ Fitur Utama
 
-| Lapisan | Teknologi |
-|---|---|
-| Backend | Python 3.11, FastAPI, Uvicorn |
-| Pemrosesan PDF | PyMuPDF (fitz), Pillow |
-| Frontend | HTML, CSS, JavaScript (vanilla) |
-| Deployment | Docker, Render (free tier) |
+- ⚡ **Dual Processing Architecture**:
+  - **Client-Side (Default Browser)**: Pemrosesan langsung di browser pengguna menggunakan **PDF.js**, **pdf-lib**, dan **JSZip**. Cepat, hemat bandwidth, dan privasi 100% terjaga (file tidak harus keluar dari perangkat).
+  - **Server-Side API (FastAPI + PyMuPDF)**: Backend API bertenaga tinggi yang dioptimalkan untuk lingkungan server low-RAM (512MB RAM).
+- 🎨 **Deteksi Piksel Warna Cerdas**:
+  - Menganalisis deviasi channel warna RGB ($|R-G|$, $|G-B|$, $|B-R|$).
+  - Otomatis mengabaikan background putih kertas (*paper background*) dan tinta teks hitam (*deep black ink*).
+  - Dilengkapi ambang batas sensitivitas (*threshold slider*) yang dapat disesuaikan untuk dokumen hasil *scan*.
+- 🖼️ **Galeri Thumbnail Interaktif**:
+  - Preview thumbnail setiap halaman lengkap dengan badge kategori dan persentase skor warna.
+  - **One-Click Category Toggle**: Ubah kategori halaman (Warna $\leftrightarrow$ Hitam-Putih) langsung dari thumbnail jika terjadi salah deteksi.
+- 🔍 **High-Resolution Modal Preview**:
+  - Klik pada halaman manapun untuk membuka preview beresolusi tinggi.
+  - Dilengkapi navigasi keyboard (*Arrow Left/Right* untuk ganti halaman, *Escape* untuk menutup).
+- 🏷️ **Batch Action & Filter Tampilan**:
+  - Filter halaman: **Semua**, **Berwarna**, atau **Hitam-Putih**.
+  - Aksi massal: *Tandai Semua Berwarna*, *Tandai Semua Hitam-Putih*, atau *Reset ke Deteksi Awal*.
+- 💰 **Kalkulator Estimasi Biaya Cetak**:
+  - Masukkan tarif cetak per lembar warna dan hitam-putih sesuai harga percetakan langganan.
+  - Menampilkan perbandingan biaya total vs biaya pisah serta persentase uang yang berhasil dihemat (*Savings Tracker*).
+- 📦 **Pilihan Unduhan Fleksibel**:
+  - Unduh **PDF Berwarna** saja.
+  - Unduh **PDF Hitam-Putih** saja.
+  - Unduh keduanya sekaligus dalam satu arsip **ZIP (Paket Cetak)**.
+- 🔒 **Privasi & Keamanan**:
+  - Tanpa perlu registrasi / login.
+  - Pada mode backend, session file dibersihkan otomatis secara berkala via background worker.
 
 ---
 
-## Cara Kerja
+## 🛠️ Tumpukan Teknologi (Tech Stack)
 
-1. Pengguna mengunggah file PDF melalui antarmuka web.
-2. Backend menerima file dan menyimpannya ke direktori sesi sementara yang unik (UUID).
-3. `PDFProcessor` merender setiap halaman PDF menjadi gambar, lalu menganalisis piksel untuk menentukan apakah halaman tersebut mengandung warna berdasarkan deviasi antar channel R, G, dan B terhadap nilai threshold.
-4. Hasil analisis dikembalikan ke frontend beserta metadata setiap halaman.
-5. Pengguna dapat meninjau hasil di UI, melakukan koreksi manual jika diperlukan, lalu memulai proses pemisahan.
-6. Backend menyusun dua file PDF baru (berwarna dan hitam-putih) sesuai kategori final tanpa mengubah urutan halaman asli.
-7. File hasil dapat diunduh secara individual atau sekaligus dalam format ZIP.
-8. File sesi dibersihkan di background secara berkala untuk menjaga privasi dan efisiensi penyimpanan.
+| Komponen | Teknologi | Keterangan |
+|---|---|---|
+| **Frontend UI** | HTML5, CSS3 (Modern Skeuomorphic Theme), Vanilla JavaScript (ES6+) | Tampilan modern bernuansa taktikal, responsif, dan tanpa dependensi framework berat |
+| **Typography & Icons** | Google Fonts (*Plus Jakarta Sans*, *Rajdhani*), FontAwesome 6 | Tipografi modern & ikon yang informatif |
+| **Client-Side PDF Engine** | PDF.js (Mozilla), pdf-lib, JSZip | Ekstraksi canvas, analisis RGB di browser, manipulasi PDF, dan kompresi ZIP |
+| **Backend Framework** | Python 3.11, FastAPI, Uvicorn, Pydantic | REST API asinkron berkecepatan tinggi |
+| **Server PDF Processing** | PyMuPDF (`fitz`), Pillow (PIL), NumPy | Rendering pixmap dan analisis array piksel berkecepatan tinggi (low-RAM footprint) |
+| **DevOps & Deployment** | Docker, Vercel (`vercel.json`), Render (`render.yaml`), Procfile | Siap dideploy ke cloud platform modern |
 
 ---
 
-## Struktur Proyek
+## 📁 Struktur Proyek
 
-```
+```text
 .
 ├── app/
-│   ├── main.py           # Entri poin FastAPI, definisi semua endpoint API
-│   ├── pdf_processor.py  # Logika analisis warna dan pemisahan PDF (dioptimalkan low-RAM)
-│   └── cleanup.py        # Fungsi pembersihan file sesi lama
+│   ├── cleanup.py        # Worker pembersihan file sesi sementara di server
+│   ├── main.py           # Endpoint REST API FastAPI & konfigurasi CORS
+│   └── pdf_processor.py  # Core engine analisis piksel warna & splitting PDF (PyMuPDF)
 ├── frontend/
-│   ├── index.html        # Antarmuka pengguna (Vercel static)
 │   ├── css/
-│   │   └── style.css     # Stylesheet dengan tema skeuomorphic
+│   │   └── style.css     # Styling tema skeuomorphic modern, grid kartu, & modal
 │   ├── js/
-│   │   └── app.js        # Logika frontend & API routing
-│   └── vercel.json       # Konfigurasi routing Vercel
-├── temp_sessions/        # Direktori sementara untuk file sesi (tidak di-commit)
-├── Dockerfile            # Konfigurasi Docker untuk Koyeb backend
-├── Procfile
-├── requirements.txt
-└── README.md
+│   │   └── app.js        # Controller utama: analisis PDF.js, interaksi UI, kalkulator, pdf-lib
+│   ├── index.html        # Antarmuka web aplikasi lengkap
+│   └── vercel.json       # Konfigurasi routing untuk deployment Vercel
+├── temp_sessions/        # Folder temporary session backend (diabaikan oleh git)
+├── .dockerignore         # Daftar file/folder yang dikecualikan dari build Docker
+├── .gitignore            # Daftar file/folder yang diabaikan Git
+├── Dockerfile            # Blueprint container berbasis python:3.11-slim
+├── Procfile              # Konfigurasi process runner web worker
+├── PRD-Pemisah-Halaman-PDF.md # Dokumen spesifikasi kebutuhan produk (PRD)
+├── render.yaml           # Konfigurasi Infrastructure as Code untuk Render
+├── requirements.txt      # Daftar dependensi Python
+└── README.md             # Dokumentasi utama proyek
 ```
 
 ---
 
-## API Endpoint
+## 🚀 Panduan Menjalankan Aplikasi
 
-### `POST /api/analyze`
+### 1. Menjalankan Frontend Secara Langsung (Client-Side Mode)
 
-Menerima file PDF dan menjalankan analisis warna per halaman.
+Karena SeparaPDF memiliki engine client-side mandiri, Anda dapat langsung menjalankan frontend tanpa backend:
 
-**Form data:**
+- Buka file `frontend/index.html` langsung di browser Anda, atau
+- Gunakan ekstensi seperti **Live Server** (VS Code), atau jalankan static server:
+  ```bash
+  # Menggunakan npx serve
+  npx serve frontend
 
-| Field | Tipe | Keterangan |
-|---|---|---|
-| `file` | File | File PDF, maksimal 50 MB |
-| `threshold` | Integer | Ambang batas sensitivitas deteksi warna (default: 18) |
-
-**Response:** JSON berisi daftar halaman beserta kategori deteksi awal dan metadata sesi.
-
----
-
-### `POST /api/generate`
-
-Menerima daftar halaman beserta kategori final dari pengguna dan menghasilkan file PDF yang telah dipisah.
-
-**Body (JSON):**
-
-```json
-{
-  "session_id": "uuid-sesi",
-  "pages": [
-    { "page_number": 1, "category": "color" },
-    { "page_number": 2, "category": "bw" }
-  ],
-  "color_price": 1000,
-  "bw_price": 250
-}
-```
-
-**Response:** JSON berisi status, jumlah halaman per kategori, dan kalkulasi estimasi biaya.
+  # Atau menggunakan modul http bawaan Python
+  cd frontend
+  python -m http.server 3000
+  ```
+  Akses di browser pada: `http://localhost:3000`
 
 ---
 
-### `GET /api/download/{session_id}/{file_type}`
+### 2. Menjalankan Backend FastAPI Secara Lokal
 
-Mengunduh file hasil pemisahan. Parameter `file_type` yang valid: `color`, `bw`, atau `zip`.
-
----
-
-### `GET /api/health`
-
-Cek status server.
-
----
-
-## Menjalankan Secara Lokal
+Jika Anda ingin memanfaatkan REST API backend:
 
 **Prasyarat:** Python 3.11+
 
 ```bash
 # 1. Clone repositori
-git clone https://github.com/Ikiiloh/Seperate-Colour-PAGE
+git clone https://github.com/Ikiiloh/Seperate-Colour-PAGE.git
 cd Seperate-Colour-PAGE
 
 # 2. Buat dan aktifkan virtual environment
 python -m venv venv
-venv\Scripts\activate      # Windows
-# source venv/bin/activate  # macOS/Linux
+# Windows (PowerShell):
+venv\Scripts\Activate.ps1
+# Windows (CMD):
+venv\Scripts\activate.bat
+# Linux / macOS:
+source venv/bin/activate
 
-# 3. Install dependensi
+# 3. Install dependensi Python
 pip install -r requirements.txt
 
-# 4. Jalankan server
-uvicorn app.main:app --reload
-
-# 5. Buka di browser
-# http://127.0.0.1:8000
+# 4. Jalankan backend server
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
+
+- **Swagger API Docs**: `http://127.0.0.1:8000/docs`
+- **Redoc API Docs**: `http://127.0.0.1:8000/redoc`
 
 ---
 
-## Menjalankan dengan Docker
+### 3. Menjalankan dengan Docker
 
 ```bash
-docker build -t separa-pdf .
-docker run -p 8000:8000 separa-pdf
+# Build Docker image
+docker build -t separapdf .
+
+# Jalankan container pada port 3000
+docker run -d -p 3000:3000 --name separapdf-app separapdf
 ```
+Akses di browser pada `http://localhost:3000`.
 
 ---
 
-## Deployment ke Render
+## 📡 Dokumentasi REST API
 
-Proyek ini siap dideploy ke [Render](https://render.com) menggunakan file `render.yaml` yang sudah tersedia. Cukup hubungkan repositori ini ke Render dan layanan akan dikonfigurasi secara otomatis.
+### 1. `GET /api/health`
+Cek status ketersediaan dan versi layanan backend.
 
-Catatan: Pada free tier Render, server akan "tidur" setelah 15 menit tidak aktif. Akses pertama setelah idle memerlukan waktu sekitar 30-50 detik untuk server bangun kembali.
+- **Response:**
+  ```json
+  {
+    "status": "ok",
+    "app": "Pemisah Halaman PDF",
+    "version": "1.0.0"
+  }
+  ```
 
 ---
 
-## Batasan
+### 2. `POST /api/analyze`
+Mengunggah file PDF untuk dianalisis warna per halamannya.
 
-- Ukuran file maksimal: 50 MB (sekitar 300+ halaman)
-- Format file yang didukung: PDF saja
-- Dokumen hasil scan fisik berpotensi memiliki noise warna pada halaman hitam-putih; sesuaikan nilai threshold jika terjadi salah deteksi
-- File sesi dihapus otomatis dan tidak dapat dipulihkan setelah masa berlaku sesi habis
+- **Content-Type**: `multipart/form-data`
+- **Parameters**:
+  - `file`: File PDF (Maksimum 50 MB).
+  - `threshold` (*optional*): Nilai ambang deviasi RGB (default: `18`).
+- **Response Contoh**:
+  ```json
+  {
+    "total_pages": 45,
+    "color_pages_count": 8,
+    "bw_pages_count": 37,
+    "session_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "filename": "skripsi_final.pdf",
+    "pages": [
+      {
+        "page_number": 1,
+        "category": "color",
+        "is_color": true,
+        "color_score": 12.45,
+        "thumbnail": "data:image/jpeg;base64,..."
+      }
+    ]
+  }
+  ```
 
 ---
 
-## Lisensi
+### 3. `POST /api/generate`
+Memproses pemisahan PDF berdasarkan kategori final (setelah disesuaikan oleh pengguna).
 
-Proyek ini dibuat untuk keperluan pembelajaran dan penggunaan publik. Silakan gunakan, modifikasi, dan distribusikan sesuai kebutuhan.
+- **Content-Type**: `application/json`
+- **Body**:
+  ```json
+  {
+    "session_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "pages": [
+      { "page_number": 1, "category": "color" },
+      { "page_number": 2, "category": "bw" }
+    ],
+    "color_price": 1000.0,
+    "bw_price": 250.0
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "status": "success",
+    "session_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "has_color": true,
+    "has_bw": true,
+    "has_zip": true,
+    "color_pages": 8,
+    "bw_pages": 37,
+    "total_pages": 45,
+    "cost_all_color": 45000.0,
+    "cost_split": 17250.0,
+    "money_saved": 27750.0,
+    "savings_percentage": 61.7
+  }
+  ```
+
+---
+
+### 4. `GET /api/download/{session_id}/{file_type}`
+Mengunduh file PDF atau arsip ZIP hasil pemisahan.
+
+- **Path Parameters**:
+  - `session_id`: UUID sesi pemrosesan.
+  - `file_type`: Pilihan jenis file (`color`, `bw`, atau `zip`).
+- **Response**: File stream (`application/pdf` atau `application/zip`).
+
+---
+
+## 🌐 Panduan Deployment
+
+### Deploy Frontend ke Vercel
+1. Hubungkan repositori GitHub ini ke dashboard [Vercel](https://vercel.com).
+2. Set **Root Directory** ke `frontend` (atau biarkan Vercel membaca [`vercel.json`](file:///c:/Users/muhri/Desktop/Seperate-Colour-PAGE/frontend/vercel.json)).
+3. Klik **Deploy**.
+
+### Deploy Backend ke Render
+1. Buat Web Service baru di [Render](https://render.com).
+2. Hubungkan repositori GitHub ini, pilih environment **Python 3**.
+3. Render akan otomatis membaca konfigurasi [`render.yaml`](file:///c:/Users/muhri/Desktop/Seperate-Colour-PAGE/render.yaml):
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+
+---
+
+## ⚖️ Batasan & Catatan Teknis
+
+- **Ukuran Berkas**: Rekomendasi batas unggah adalah 50 MB untuk kenyamanan rendering di browser.
+- **Noise Dokumen Scan**: Dokumen hasil scan fisik dapat mengandung sedikit noise warna pada kertas kekuningan; geser *threshold slider* ke nilai yang lebih tinggi (misal: 25–35) untuk menyaring noise tersebut.
+- **Urutan Halaman**: Halaman di dalam PDF hasil pemisahan tetap mempertahankan urutan kronologis aslinya.
+
+---
+
+## 📄 Lisensi
+
+Proyek ini bersifat open-source dan bebas digunakan, dimodifikasi, serta didistribusikan untuk keperluan pendidikan dan non-komersial.
