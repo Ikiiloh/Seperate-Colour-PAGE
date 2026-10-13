@@ -263,19 +263,46 @@
     };
 
     // ------------------------------------------------------------------
-    // PDF engines
+    // PDF engines & Offline Worker Setup
     // ------------------------------------------------------------------
+    let workerBlobPromise = null;
+    if (typeof pdfjsLib !== 'undefined') {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = './vendor/pdf.worker.min.js';
+        // Convert worker script into a local in-memory Blob URL to prevent offline network errors on mobile
+        workerBlobPromise = fetch('./vendor/pdf.worker.min.js')
+            .then((r) => {
+                if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                return r.blob();
+            })
+            .then((blob) => {
+                const blobUrl = URL.createObjectURL(blob);
+                pdfjsLib.GlobalWorkerOptions.workerSrc = blobUrl;
+                return blobUrl;
+            })
+            .catch((err) => {
+                console.warn('Fallback to standard worker path:', err);
+                return './vendor/pdf.worker.min.js';
+            });
+    }
+
     SP.openPdfjs = async (buffer) => {
         if (typeof pdfjsLib === 'undefined') throw new Error('Library pdf.js belum termuat.');
+        if (workerBlobPromise) {
+            await workerBlobPromise.catch(() => {});
+        }
         try {
-            const doc = await pdfjsLib.getDocument({ data: new Uint8Array(buffer.slice(0)) }).promise;
+            const doc = await pdfjsLib.getDocument({
+                data: new Uint8Array(buffer.slice(0)),
+                isEvalSupported: false,
+            }).promise;
             SP.onCleanup(() => doc.destroy());
             return doc;
         } catch (e) {
+            console.error('PDF.js open error:', e);
             if (e && e.name === 'PasswordException') {
                 throw new Error('PDF ini diproteksi password. Buka proteksinya terlebih dahulu.');
             }
-            throw new Error('File PDF tidak bisa dibaca (rusak atau tidak valid).');
+            throw new Error(e && e.message ? `Gagal membaca PDF: ${e.message}` : 'File PDF tidak bisa dibaca (rusak atau tidak valid).');
         }
     };
 
