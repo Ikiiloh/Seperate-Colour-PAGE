@@ -7,6 +7,10 @@
 
     if (typeof pdfjsLib !== 'undefined') {
         pdfjsLib.GlobalWorkerOptions.workerSrc = './vendor/pdf.worker.min.js';
+        // Pre-fetch worker script to disk cache immediately while online
+        try {
+            fetch('./vendor/pdf.worker.min.js', { cache: 'force-cache' }).catch(() => {});
+        } catch (e) {}
     }
 
     const CATEGORIES = [
