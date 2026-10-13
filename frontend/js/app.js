@@ -22,17 +22,37 @@
     let currentId = null;
 
     function toolCard(t) {
+        const isLong = Boolean(t.desc && t.desc.length > 58);
         const a = SP.h(`
-            <a class="tool-card skeuo-card hue-${t.hue || 'blue'}" href="#/${t.id}">
+            <a class="tool-card skeuo-card hue-${t.hue || 'blue'} ${t.featured ? 'has-flag' : ''}" href="#/${t.id}">
+                ${t.featured ? '<span class="tool-flag">Unggulan</span>' : ''}
                 <div class="tool-icon"><i class="fa-solid ${t.icon}"></i></div>
                 <div class="tool-text">
-                    ${t.featured ? '<span class="tool-flag">Unggulan</span>' : ''}
-                    <h3></h3>
-                    <p></p>
+                    <div class="tool-title-row">
+                        <h3></h3>
+                        <span class="tool-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                    <div class="tool-desc-wrap">
+                        <p class="tool-desc"></p>
+                        ${isLong ? '<button type="button" class="see-more-btn" aria-label="Lihat selengkapnya">Selengkapnya <i class="fa-solid fa-chevron-down"></i></button>' : ''}
+                    </div>
                 </div>
             </a>`);
         a.querySelector('h3').textContent = t.title;
-        a.querySelector('p').textContent = t.desc;
+        a.querySelector('.tool-desc').textContent = t.desc;
+
+        if (isLong) {
+            const btn = a.querySelector('.see-more-btn');
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const expanded = a.classList.toggle('is-expanded');
+                btn.innerHTML = expanded
+                    ? 'Tutup <i class="fa-solid fa-chevron-up"></i>'
+                    : 'Selengkapnya <i class="fa-solid fa-chevron-down"></i>';
+                btn.setAttribute('aria-label', expanded ? 'Tutup penjelasan' : 'Lihat selengkapnya');
+            });
+        }
         return a;
     }
 
@@ -41,7 +61,7 @@
         app.innerHTML = '';
         const hero = SP.h(`
             <section class="hero-section">
-                <h1 class="hero-title skeuo-embossed-text">Semua Alat PDF, <span class="highlight-gold-text">Gratis & Tanpa Upload</span></h1>
+                <h1 class="hero-title skeuo-embossed-text">Kumpulan Alat PDF, <span class="highlight-gold-text">Gratis & Private</span></h1>
                 <p class="hero-subtitle">Gabung, pisah, kompres, putar, dan ubah PDF langsung di browser. File tidak pernah meninggalkan perangkatmu.</p>
                 <div class="search-box skeuo-inset-input">
                     <i class="fa-solid fa-magnifying-glass"></i>
