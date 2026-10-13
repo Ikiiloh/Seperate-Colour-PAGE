@@ -1,6 +1,6 @@
 # NoPDF — Toolkit PDF Gratis, 100% di Browser
 
-> **Semua proses terjadi langsung di browsermu — file tidak pernah meninggalkan perangkatmu.**
+> **Semua proses terjadi langsung di browsermu — file tidak pernah meninggalkan perangkatmu. U can test it in offline!**
 
 Kumpulan alat PDF lengkap yang **gratis, tanpa login, tanpa server**. Dibangun dengan HTML + CSS + Vanilla JS murni menggunakan **pdf.js**, **pdf-lib**, dan **JSZip** — semuanya berjalan sepenuhnya di sisi klien (*client-side*).
 
