@@ -38,6 +38,26 @@
 body.skeuo-theme {
     font-family: var(--font-body);
     background-color: #0c1017;
+    color: var(--skeuo-text-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    line-height: 1.5;
+    position: relative;
+}
+
+/* GPU-accelerated fixed background (prevents mobile scroll repaint bottleneck) */
+body.skeuo-theme::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: #0c1017;
     background-image:
         radial-gradient(circle at 12% 18%, rgba(59, 130, 246, 0.18), transparent 45%),
         radial-gradient(circle at 88% 22%, rgba(139, 92, 246, 0.15), transparent 45%),
@@ -45,13 +65,8 @@ body.skeuo-theme {
         radial-gradient(circle at 82% 85%, rgba(245, 158, 11, 0.13), transparent 40%),
         radial-gradient(circle at 18% 88%, rgba(16, 185, 129, 0.10), transparent 42%),
         linear-gradient(160deg, #131926 0%, #0a0d14 100%);
-    background-attachment: fixed;
-    color: var(--skeuo-text-light);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-    line-height: 1.5;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .container {
